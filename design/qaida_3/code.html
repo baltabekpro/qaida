@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Home Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2463eb",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0f0f0f",
+                        "card-dark": "#1a1a1a",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "1.25rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        'glow': '0 0 20px rgba(37, 99, 235, 0.3)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .light-surface {
+            background: #ffffff;
+            border: 1px solid rgba(148, 163, 184, 0.18);
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+        }
+    </style>
+<style>
+    body {
+      min-height: 100dvh;
+    }
+    main {
+      min-height: 0;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<header class="flex items-center px-4 pt-6 pb-2 justify-between">
+<div class="flex items-center gap-3">
+<div class="size-11 shrink-0 rounded-[16px] bg-gradient-to-br from-primary to-blue-400 flex items-center justify-center shadow-[0_10px_24px_rgba(37,99,235,0.25)]">
+<span class="material-symbols-outlined text-white text-[22px]" style="font-variation-settings:'FILL' 1,'wght' 500;">person</span>
+</div>
+<h1 class="text-xl font-bold leading-tight tracking-tight">Привет 👋 <span class="text-slate-900">Гость</span></h1>
+</div>
+<button class="h-11 px-3 rounded-[16px] bg-white/90 border border-slate-200 text-slate-700 shadow-[0_10px_25px_rgba(15,23,42,0.08)] flex items-center gap-2 backdrop-blur-sm">
+<span class="relative flex items-center justify-center size-7 rounded-xl bg-amber-50 text-amber-500">
+<span class="material-symbols-outlined text-[19px]" style="font-variation-settings:'FILL' 1,'wght' 500;">notifications_active</span>
+<span class="absolute -top-1 -right-1 size-2.5 rounded-full bg-rose-500 border-2 border-white"></span>
+</span>
+<span class="text-sm font-semibold">3</span>
+</button>
+</header>
+<main class="flex-1 overflow-y-auto pb-24">
+<div class="px-4 py-4">
+<div class="relative flex items-center w-full">
+<span class="material-symbols-outlined absolute left-4 text-slate-500">search</span>
+<input class="w-full h-12 pl-12 pr-4 bg-white border border-slate-200 rounded-[14px] text-slate-900 placeholder:text-slate-400 focus:ring-2 focus:ring-primary focus:outline-none shadow-sm" placeholder="Поиск мест..." type="text"/>
+</div>
+</div>
+<div class="px-4 py-4">
+<div class="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[#eef6ff] to-[#dbeafe] p-8 flex flex-col gap-6 border border-slate-200 shadow-[0_12px_30px_rgba(37,99,235,0.12)]">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full -mr-32 -mt-32 blur-[100px]"></div>
+<div class="z-10">
+<h2 class="text-[28px] font-extrabold text-slate-900 leading-tight">Не знаешь куда сходить?</h2>
+<p class="text-slate-600 mt-3 text-base">Открой для себя лучшие заведения города</p>
+</div>
+<div class="z-10">
+<button class="w-full h-[52px] bg-primary hover:bg-primary/90 text-white rounded-[14px] font-semibold flex items-center justify-center gap-2 transition-all shadow-lg shadow-primary/20 active:scale-[0.98]">
+                        Найти место <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="absolute bottom-[-10px] right-4 opacity-20 text-primary">
+<span class="material-symbols-outlined text-[100px]">explore</span>
+</div>
+</div>
+</div>
+<div class="mt-6">
+<h3 class="px-4 text-lg font-bold mb-4">Категории</h3>
+<div class="flex overflow-x-auto gap-3 px-4 no-scrollbar pb-1">
+<button class="flex-none h-[40px] bg-primary text-white px-5 rounded-full flex items-center gap-2.5 whitespace-nowrap font-semibold text-[13px] shadow-[0_0_20px_rgba(37,99,235,0.3)]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings:'FILL' 1">restaurant</span>
+🍽 Еда
+</button>
+<button class="flex-none h-[40px] bg-white text-slate-600 px-5 rounded-full flex items-center gap-2.5 whitespace-nowrap font-medium text-[13px] border border-slate-200 shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-slate-400">coffee</span>
+☕ Кафе
+</button>
+<button class="flex-none h-[40px] bg-white text-slate-600 px-5 rounded-full flex items-center gap-2.5 whitespace-nowrap font-medium text-[13px] border border-slate-200 shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-slate-400">sports_bar</span>
+🍺 Бар
+</button>
+<button class="flex-none h-[40px] bg-white text-slate-600 px-5 rounded-full flex items-center gap-2.5 whitespace-nowrap font-medium text-[13px] border border-slate-200 shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-slate-400">park</span>
+🌳 Парк
+</button>
+<button class="flex-none h-[40px] bg-white text-slate-600 px-5 rounded-full flex items-center gap-2.5 whitespace-nowrap font-medium text-[13px] border border-slate-200 shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-slate-400">movie</span>
+🎬 Кино
+</button>
+<button class="flex-none h-[40px] bg-white text-slate-600 px-5 rounded-full flex items-center gap-2.5 whitespace-nowrap font-medium text-[13px] border border-slate-200 shadow-sm">
+<span class="material-symbols-outlined text-[18px] text-slate-400">nightlife</span>
+🎶 Развлечения
+</button>
+</div>
+</div>
+
+<div class="mt-8">
+<div class="px-4 flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold">Популярное сегодня</h3>
+<a class="text-primary text-sm font-medium" href="#">Все</a>
+</div>
+<div class="flex overflow-x-auto gap-4 px-4 no-scrollbar pb-2">
+<div class="flex-none w-[280px]">
+<div class="aspect-[16/9] rounded-[20px] overflow-hidden relative group">
+<img alt="Restaurant" class="w-full h-full object-cover" data-alt="Modern stylish restaurant interior lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-z4U99vwYU3x9I8F3lDC1J8ODp-5CnmVlPNTawOY-TJqlDJC7vFYs-sLUlJBPdVgFvOEgXnskL8oKT49-BZmlpMyBi39nEG8BdrZJnw4ZsO6LVf5npGA-V_30vtwz9nX8e0RcnIupW55gp9YNm0UtJVh-gcWviTCYIOB86wbwkbJDEkVSgAhE02iyoX7nzRQoNgkZptJZmULfHK7RtjaUduNnTuQwqN2chkqOO0uNY6Wqi-cdqA6pr8VNpzn5O-XWiCuR9KKR5w"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-500 text-[16px] fill-current">star</span>
+<span class="text-white text-xs font-bold">4.9</span>
+</div>
+</div>
+<div class="mt-3">
+<p class="font-bold text-slate-900">The Terrace Grill</p>
+<p class="text-slate-500 text-xs">Европейская кухня • $$</p>
+</div>
+</div>
+<div class="flex-none w-[280px]">
+<div class="aspect-[16/9] rounded-[20px] overflow-hidden relative group">
+<img alt="Cafe" class="w-full h-full object-cover" data-alt="Cozy coffee shop aesthetic atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfH-51EfMW2ob-KoN1Zc4hWQLPIO18jeUipOjalEvncrdnBsdvaLvz_p2RwWe6cmkfPUR2LqnXj7kKQCNUMVCmPE5sX0hIPphMZHux0f2XwNP1l19lm8BgsgomxDMY95T8WSQennokKqCp64zPInDnSrt_cKh4ca5E3akhGfMW5xm_c0JfJ_Lap9Nr_JFhE_z3_VlgM2zgn04e1CLsW67mP63ZEVXo0Kt9aG9k3SlfaodbFIAvXfOPe9HJ8RJS3ABTj2oniY2GmA"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-500 text-[16px] fill-current">star</span>
+<span class="text-white text-xs font-bold">4.7</span>
+</div>
+</div>
+<div class="mt-3">
+<p class="font-bold text-slate-900">Morning Dew Cafe</p>
+<p class="text-slate-500 text-xs">Кофе и десерты • $</p>
+</div>
+</div>
+<div class="flex-none w-[280px]">
+<div class="aspect-[16/9] rounded-[20px] overflow-hidden relative group">
+<img alt="Bar" class="w-full h-full object-cover" data-alt="Nightlife bar with colorful cocktail glasses" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM-VSis46GaoNL65kDx8fxNkuKrWqVyVgYqYMnm519BLZmPNpOjoF7wXUCeu-5x_SuOgvhacpnr6VDWsoFhPFC7fH0PogVT9_FzV-IVJVSNZyAQmstwq1iXO2g8y1ksYXhVOxi8Va9HWbYPKdMv_5a9ABkhsbzyfWtfPDrDaDydrzbOSsb2i1m-C3D5S6nYk2GXbmez0K0--Y_nbmAhRGOP9UO6VJ0fhL-JP8cQ27MNpSE8MefXzP-5xP5zcYUURP3U8E691T4Xg"/>
+<div class="absolute top-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-yellow-500 text-[16px] fill-current">star</span>
+<span class="text-white text-xs font-bold">4.8</span>
+</div>
+</div>
+<div class="mt-3">
+<p class="font-bold text-slate-900">Neon Night Bar</p>
+<p class="text-slate-500 text-xs">Коктейли • $$$</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="mt-8 px-4">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold">Рядом с вами</h3>
+<a class="text-primary text-sm font-medium" href="#">На карте</a>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div class="rounded-[20px] bg-white border border-slate-200 p-4 shadow-sm">
+<div class="size-11 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 500;">local_cafe</span>
+</div>
+<p class="text-sm font-bold text-slate-900">Brew Corner</p>
+<p class="text-xs text-slate-500 mt-1">5 мин пешком</p>
+<p class="text-xs text-emerald-600 mt-3 font-semibold">Открыто до 23:00</p>
+</div>
+<div class="rounded-[20px] bg-white border border-slate-200 p-4 shadow-sm">
+<div class="size-11 rounded-2xl bg-rose-50 text-rose-500 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 500;">ramen_dining</span>
+</div>
+<p class="text-sm font-bold text-slate-900">Tokyo Yard</p>
+<p class="text-xs text-slate-500 mt-1">8 мин пешком</p>
+<p class="text-xs text-rose-500 mt-3 font-semibold">Есть очередь</p>
+</div>
+<div class="rounded-[20px] bg-white border border-slate-200 p-4 shadow-sm">
+<div class="size-11 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 500;">deck</span>
+</div>
+<p class="text-sm font-bold text-slate-900">Roof 17</p>
+<p class="text-xs text-slate-500 mt-1">12 мин на такси</p>
+<p class="text-xs text-sky-600 mt-3 font-semibold">Вид на закат</p>
+</div>
+<div class="rounded-[20px] bg-white border border-slate-200 p-4 shadow-sm">
+<div class="size-11 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 500;">music_note</span>
+</div>
+<p class="text-sm font-bold text-slate-900">Pulse Hall</p>
+<p class="text-xs text-slate-500 mt-1">Живая музыка в 21:00</p>
+<p class="text-xs text-violet-600 mt-3 font-semibold">Сегодня вход свободный</p>
+</div>
+</div>
+</div>
+
+<div class="mt-8">
+<div class="px-4 flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold">Подборки для настроения</h3>
+<a class="text-primary text-sm font-medium" href="#">Смотреть</a>
+</div>
+<div class="flex overflow-x-auto gap-3 px-4 no-scrollbar pb-2">
+<div class="flex-none w-[220px] rounded-[24px] bg-[linear-gradient(135deg,#111827_0%,#1d4ed8_100%)] p-5 text-white shadow-[0_18px_30px_rgba(15,23,42,0.18)]">
+<div class="size-11 rounded-2xl bg-white/15 flex items-center justify-center mb-8">
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 500;">nightlife</span>
+</div>
+<p class="text-base font-bold">Для шумного вечера</p>
+<p class="text-sm text-white/75 mt-2">6 баров и лаунжей с музыкой и коктейлями</p>
+</div>
+<div class="flex-none w-[220px] rounded-[24px] bg-[linear-gradient(135deg,#f97316_0%,#fb7185_100%)] p-5 text-white shadow-[0_18px_30px_rgba(249,115,22,0.22)]">
+<div class="size-11 rounded-2xl bg-white/20 flex items-center justify-center mb-8">
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 500;">favorite</span>
+</div>
+<p class="text-base font-bold">Для свидания</p>
+<p class="text-sm text-white/80 mt-2">Тихие рестораны с атмосферой и красивой подачей</p>
+</div>
+<div class="flex-none w-[220px] rounded-[24px] bg-[linear-gradient(135deg,#059669_0%,#14b8a6_100%)] p-5 text-white shadow-[0_18px_30px_rgba(5,150,105,0.22)]">
+<div class="size-11 rounded-2xl bg-white/20 flex items-center justify-center mb-8">
+<span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1,'wght' 500;">wb_sunny</span>
+</div>
+<p class="text-base font-bold">Для позднего завтрака</p>
+<p class="text-sm text-white/80 mt-2">Светлые кафе с бранчами, кофе и десертами</p>
+</div>
+</div>
+</div>
+
+<div class="mt-8 px-4 pb-8">
+<div class="flex items-center justify-between mb-4">
+<h3 class="text-lg font-bold">События сегодня</h3>
+<a class="text-primary text-sm font-medium" href="#">Календарь</a>
+</div>
+<div class="space-y-3">
+<div class="rounded-[22px] bg-white border border-slate-200 p-4 flex items-center gap-4 shadow-sm">
+<div class="w-14 h-14 rounded-[18px] bg-slate-900 text-white flex flex-col items-center justify-center shrink-0">
+<span class="text-[11px] uppercase tracking-[0.18em] text-white/60">Мар</span>
+<span class="text-lg font-bold leading-none">09</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="text-sm font-bold text-slate-900">Jazz &amp; Dinner в Blue Room</p>
+<p class="text-xs text-slate-500 mt-1">20:30 • 2,1 км • от 1 500 ₽</p>
+</div>
+<button class="size-10 rounded-2xl bg-slate-100 text-slate-600 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">arrow_outward</span>
+</button>
+</div>
+<div class="rounded-[22px] bg-white border border-slate-200 p-4 flex items-center gap-4 shadow-sm">
+<div class="w-14 h-14 rounded-[18px] bg-primary text-white flex flex-col items-center justify-center shrink-0">
+<span class="text-[11px] uppercase tracking-[0.18em] text-white/70">Мар</span>
+<span class="text-lg font-bold leading-none">09</span>
+</div>
+<div class="min-w-0 flex-1">
+<p class="text-sm font-bold text-slate-900">Киновечер под открытым небом</p>
+<p class="text-xs text-slate-500 mt-1">21:00 • Центральный парк • бесплатно</p>
+</div>
+<button class="size-10 rounded-2xl bg-slate-100 text-slate-600 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[20px]">arrow_outward</span>
+</button>
+</div>
+</div>
+</div>
+
+</main>
+<div style="position:fixed;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(255,255,255,0.98) 0%,rgba(255,255,255,0.72) 55%,transparent 100%);padding-bottom:20px;display:flex;justify-content:center;align-items:flex-end;z-index:50;pointer-events:none;min-height:110px;">
+<nav style="display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.78);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border:1px solid rgba(148,163,184,.28);border-radius:9999px;padding:8px 16px;box-shadow:0 12px 30px rgba(15,23,42,.12),0 0 0 0.5px rgba(255,255,255,.9) inset;pointer-events:auto;">
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;background:rgba(36,99,235,.14);box-shadow:inset 0 0 0 1px rgba(36,99,235,.06);text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#2463eb;font-variation-settings:'FILL' 1,'wght' 400;">home</span><span style="font-size:9px;font-weight:600;color:#2463eb;font-family:Inter,sans-serif;">Главная</span></a>
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#64748b;">search</span><span style="font-size:9px;font-weight:500;color:#64748b;font-family:Inter,sans-serif;">Поиск</span></a>
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#64748b;">bookmark</span><span style="font-size:9px;font-weight:500;color:#64748b;font-family:Inter,sans-serif;">Сохранено</span></a>
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#64748b;">person</span><span style="font-size:9px;font-weight:500;color:#64748b;font-family:Inter,sans-serif;">Профиль</span></a>
+</nav>
+</div>
+</body></html>

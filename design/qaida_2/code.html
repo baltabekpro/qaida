@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Qaida - Найди своё место в Алматы</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2563eb",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0F0F0F",
+                        "neutral-grey": "#888888"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "2xl": "14px",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      min-height: max(844px, 100dvh);
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #08080f;
+      color: #fff;
+      overflow: hidden;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    /* Scrolling cards strip */
+    @keyframes slide-left {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes slide-right {
+      0%   { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+    .strip-left  { animation: slide-left  28s linear infinite; }
+    .strip-right { animation: slide-right 22s linear infinite; }
+
+    /* Glow orbs */
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+    }
+
+    .strip-left > div,
+    .strip-right > div {
+      background: linear-gradient(180deg, #ffffff, #f7fbff) !important;
+      border: 1px solid rgba(148, 163, 184, 0.18) !important;
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+    }
+
+    .strip-left > div > div:nth-child(2),
+    .strip-right > div > div:nth-child(2) {
+      color: #0f172a !important;
+      font-weight: 700 !important;
+    }
+
+    .strip-left > div > div:nth-child(3),
+    .strip-right > div > div:nth-child(3) {
+      color: #64748b !important;
+    }
+  </style>
+</head>
+<body>
+
+<!-- BG glow orbs -->
+<div class="orb" style="width:320px;height:320px;background:rgba(36,99,235,.12);top:-60px;left:-80px;"></div>
+<div class="orb" style="width:260px;height:260px;background:rgba(124,58,237,.1);top:40px;right:-60px;"></div>
+<div class="orb" style="width:400px;height:200px;background:rgba(36,99,235,.08);bottom:120px;left:50%;transform:translateX(-50%);"></div>
+
+<div style="position:relative;display:flex;flex-direction:column;height:100dvh;min-height:844px;overflow:hidden;background:linear-gradient(180deg,#ffffff 0%,#f7fbff 100%);">
+
+  <!-- Top: logo -->
+  <div style="padding:56px 0 0;display:flex;flex-direction:column;align-items:center;gap:10px;flex-shrink:0;">
+    <!-- Icon mark -->
+    <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(135deg,#2463eb,#7c3aed);display:flex;align-items:center;justify-content:center;box-shadow:0 0 0 1px rgba(255,255,255,.12) inset,0 12px 40px rgba(36,99,235,.5);">
+      <span class="material-symbols-outlined" style="color:#fff;font-size:28px;font-variation-settings:'FILL' 1;">explore</span>
+    </div>
+    <div style="font-size:32px;font-weight:800;letter-spacing:-1px;margin-top:4px;background:linear-gradient(135deg,#0f172a 0%,#2463eb 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">Qaida</div>
+    <div style="font-size:14px;color:#64748b;letter-spacing:.2px;">Алматы · Гид по местам</div>
+  </div>
+
+  <!-- Middle: animated place cards -->
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:14px;overflow:hidden;padding:32px 0;mask-image:linear-gradient(to right,transparent,black 16%,black 84%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 16%,black 84%,transparent);">
+
+    <!-- Row 1 — slides left -->
+    <div style="display:flex;gap:12px;width:max-content;" class="strip-left">
+      <!-- doubled for seamless loop -->
+      <div style="background:linear-gradient(160deg,#1a1a2e,#16213e);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(56,130,246,.25);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#60a5fa;font-variation-settings:'FILL' 1;">local_cafe</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Choco Café</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Кафе · 4.8 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#1a2e1a,#0f2010);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(74,222,128,.18);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#4ade80;font-variation-settings:'FILL' 1;">restaurant</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Noodle Bar</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Ресторан · 4.6 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#2e1a1a,#201010);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(248,113,113,.2);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#f87171;font-variation-settings:'FILL' 1;">local_bar</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Sky Bar</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Бар · 4.9 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#1a1a2e,#0f0f22);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(167,139,250,.2);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#a78bfa;font-variation-settings:'FILL' 1;">palette</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Art Space</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Галерея · 4.7 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#2e2a1a,#201c0f);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(251,191,36,.18);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#fbbf24;font-variation-settings:'FILL' 1;">park</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Green Park</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Парк · 4.5 ★</div>
+      </div>
+      <!-- duplicate -->
+      <div style="background:linear-gradient(160deg,#1a1a2e,#16213e);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(56,130,246,.25);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#60a5fa;font-variation-settings:'FILL' 1;">local_cafe</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Choco Café</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Кафе · 4.8 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#1a2e1a,#0f2010);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(74,222,128,.18);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#4ade80;font-variation-settings:'FILL' 1;">restaurant</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Noodle Bar</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Ресторан · 4.6 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#2e1a1a,#201010);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(248,113,113,.2);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#f87171;font-variation-settings:'FILL' 1;">local_bar</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Sky Bar</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Бар · 4.9 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#1a1a2e,#0f0f22);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(167,139,250,.2);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#a78bfa;font-variation-settings:'FILL' 1;">palette</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Art Space</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Галерея · 4.7 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#2e2a1a,#201c0f);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(251,191,36,.18);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#fbbf24;font-variation-settings:'FILL' 1;">park</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Green Park</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Парк · 4.5 ★</div>
+      </div>
+    </div>
+
+    <!-- Row 2 — slides right -->
+    <div style="display:flex;gap:12px;width:max-content;" class="strip-right">
+      <div style="background:linear-gradient(160deg,#1c1c3a,#12122a);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(129,140,248,.2);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#818cf8;font-variation-settings:'FILL' 1;">music_note</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Jazz Club</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Клуб · 4.9 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#2a1c2a,#1a0f1a);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(244,114,182,.2);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#f472b6;font-variation-settings:'FILL' 1;">local_pizza</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">La Piazza</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Пицца · 4.7 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#1a2a2e,#0f1820);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(45,212,191,.18);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#2dd4bf;font-variation-settings:'FILL' 1;">menu_book</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Book Café</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Кафе · 4.8 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#2e1c1a,#200e0c);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(251,146,60,.2);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#fb923c;font-variation-settings:'FILL' 1;">fitness_center</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">FitZone</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Спорт · 4.6 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#1a1c2e,#0f1020);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(96,165,250,.2);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#60a5fa;font-variation-settings:'FILL' 1;">movie</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Cinema X</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Кино · 4.5 ★</div>
+      </div>
+      <!-- duplicate -->
+      <div style="background:linear-gradient(160deg,#1c1c3a,#12122a);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(129,140,248,.2);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#818cf8;font-variation-settings:'FILL' 1;">music_note</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Jazz Club</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Клуб · 4.9 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#2a1c2a,#1a0f1a);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(244,114,182,.2);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#f472b6;font-variation-settings:'FILL' 1;">local_pizza</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">La Piazza</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Пицца · 4.7 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#1a2a2e,#0f1820);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(45,212,191,.18);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#2dd4bf;font-variation-settings:'FILL' 1;">menu_book</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Book Café</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Кафе · 4.8 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#2e1c1a,#200e0c);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(251,146,60,.2);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#fb923c;font-variation-settings:'FILL' 1;">fitness_center</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">FitZone</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Спорт · 4.6 ★</div>
+      </div>
+      <div style="background:linear-gradient(160deg,#1a1c2e,#0f1020);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:14px 16px;width:160px;flex-shrink:0;">
+        <div style="width:34px;height:34px;border-radius:10px;background:rgba(96,165,250,.2);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="material-symbols-outlined" style="font-size:18px;color:#60a5fa;font-variation-settings:'FILL' 1;">movie</span></div>
+        <div style="font-size:13px;font-weight:600;margin-bottom:2px;">Cinema X</div>
+        <div style="font-size:11px;color:rgba(255,255,255,.4);">Кино · 4.5 ★</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Bottom CTA -->
+  <div style="padding:0 24px 48px;display:flex;flex-direction:column;gap:16px;flex-shrink:0;">
+    <!-- Feature pills -->
+    <div style="display:flex;gap:8px;overflow:hidden;justify-content:center;flex-wrap:nowrap;">
+      <span style="font-size:11px;white-space:nowrap;color:#64748b;background:#ffffff;border:1px solid rgba(148,163,184,.18);border-radius:999px;padding:5px 12px;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;box-shadow:0 8px 18px rgba(15,23,42,.05);"><span class="material-symbols-outlined" style="font-size:14px;color:#f87171;font-variation-settings:'FILL' 1;">restaurant</span>Рестораны</span>
+      <span style="font-size:11px;white-space:nowrap;color:#64748b;background:#ffffff;border:1px solid rgba(148,163,184,.18);border-radius:999px;padding:5px 12px;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;box-shadow:0 8px 18px rgba(15,23,42,.05);"><span class="material-symbols-outlined" style="font-size:14px;color:#60a5fa;font-variation-settings:'FILL' 1;">local_cafe</span>Кафе</span>
+      <span style="font-size:11px;white-space:nowrap;color:#64748b;background:#ffffff;border:1px solid rgba(148,163,184,.18);border-radius:999px;padding:5px 12px;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;box-shadow:0 8px 18px rgba(15,23,42,.05);"><span class="material-symbols-outlined" style="font-size:14px;color:#a78bfa;font-variation-settings:'FILL' 1;">celebration</span>Развлечения</span>
+      <span style="font-size:11px;white-space:nowrap;color:#64748b;background:#ffffff;border:1px solid rgba(148,163,184,.18);border-radius:999px;padding:5px 12px;flex-shrink:0;display:inline-flex;align-items:center;gap:5px;box-shadow:0 8px 18px rgba(15,23,42,.05);"><span class="material-symbols-outlined" style="font-size:14px;color:#4ade80;font-variation-settings:'FILL' 1;">park</span>Природа</span>
+    </div>
+
+    <!-- Main button -->
+    <button style="width:100%;height:56px;border-radius:16px;background:linear-gradient(135deg,#2463eb,#5ba8ff);border:none;color:#fff;font-size:17px;font-weight:700;font-family:'Inter',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 12px 30px rgba(36,99,235,.22),0 0 0 1px rgba(255,255,255,.55) inset;letter-spacing:-.2px;">
+      Начать
+      <span class="material-symbols-outlined" style="font-size:20px;font-variation-settings:'FILL' 0,'wght' 600;">arrow_forward</span>
+    </button>
+
+    <p style="text-align:center;font-size:12px;color:#94a3b8;letter-spacing:.2px;">50+ мест · Алматы</p>
+  </div>
+
+</div>
+</body></html>

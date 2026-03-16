@@ -1,0 +1,3143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Qaida UI Kit Board</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #ffffff;
+      --paper: #ffffff;
+      --paper-soft: #f8fbff;
+      --paper-muted: #eef4fb;
+      --ink: #172033;
+      --muted: #6a778b;
+      --line: rgba(15, 23, 42, 0.08);
+      --line-strong: rgba(15, 23, 42, 0.14);
+      --blue: #7db7ff;
+      --blue-dark: #2463eb;
+      --blue-ink: #2463eb;
+      --green: #9dcf80;
+      --mint: #d9ebff;
+      --rose: #ffd7c9;
+      --sand: #eef4fb;
+      --slate: #eaf1fb;
+      --nav-bg: rgba(255, 255, 255, 0.82);
+      --card-dark: #ffffff;
+      --shadow: 0 20px 44px rgba(15, 23, 42, 0.08);
+      --shadow-soft: 0 12px 28px rgba(15, 23, 42, 0.06);
+      --radius-xl: 28px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+    }
+
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Inter', sans-serif;
+      transition: background .25s ease, color .25s ease;
+      position: relative;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+      background-size: 32px 32px;
+      pointer-events: none;
+      opacity: 0.55;
+    }
+
+    body[data-theme="dark"]::before {
+      background-image:
+        linear-gradient(rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+      opacity: 0.35;
+    }
+
+    .board {
+      position: relative;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .board-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 28px 32px;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(15, 23, 42, 0.07);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .header-copy {
+      max-width: 760px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--blue);
+      box-shadow: 0 0 0 6px rgba(91, 168, 255, 0.14);
+    }
+
+    h1 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 42px;
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      margin-bottom: 14px;
+    }
+
+    .header-copy p {
+      font-size: 15px;
+      line-height: 1.6;
+      color: var(--muted);
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(120px, 1fr));
+      gap: 12px;
+      min-width: 360px;
+    }
+
+    .meta-card {
+      padding: 16px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .meta-card strong {
+      display: block;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      margin-bottom: 5px;
+    }
+
+    .meta-card span {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.45;
+    }
+
+    .board-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .section {
+      padding: 26px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(248,251,255,0.96) 100%);
+      border: 1px solid rgba(15, 23, 42, 0.07);
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(91, 168, 255, 0.09), transparent 70%);
+      pointer-events: none;
+    }
+
+    .section-head {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .section-head h2 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 26px;
+      letter-spacing: -0.05em;
+      margin-bottom: 4px;
+    }
+
+    .section-head p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 480px;
+    }
+
+    .section-tag {
+      padding: 7px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      white-space: nowrap;
+    }
+
+    .tokens-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .token-card {
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .token-card h3 {
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+
+    .palette-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .swatch-chip {
+      height: 68px;
+      border-radius: 18px;
+      border: 1px solid rgba(23, 23, 23, 0.08);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+
+    .swatch span,
+    .type-spec span {
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .type-spec {
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      margin-bottom: 10px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .type-spec strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .type-display {
+      font-family: 'Manrope', sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      margin-bottom: 10px;
+    }
+
+    .type-title {
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      margin-bottom: 10px;
+    }
+
+    .type-body {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--ink);
+    }
+
+    .component-board {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .wide-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .component-card {
+      padding: 18px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      border: 1px solid var(--line);
+      min-height: 140px;
+      position: relative;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .component-label {
+      margin-top: 14px;
+      font-size: 11px;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
+    .segment-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .segment-pills {
+      display: grid;
+      gap: 6px;
+    }
+
+    .segment-pill {
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: 12px;
+      background: transparent;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .segment-pill.active {
+      background: linear-gradient(180deg, #5ea4ff 0%, #2463eb 100%);
+      border-color: rgba(36, 99, 235, 0.22);
+      color: #ffffff;
+      box-shadow: 0 12px 24px rgba(36,99,235,0.2);
+    }
+
+    .segment-counter {
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      border-radius: 999px;
+      background: rgba(36,99,235,0.1);
+      color: var(--blue-dark);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 800;
+    }
+
+    .segment-pill.active .segment-counter {
+      background: rgba(255,255,255,0.18);
+      color: #ffffff;
+    }
+
+    .pill-tabs-demo {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .pill-tab-demo {
+      min-height: 34px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      background: rgba(255, 255, 255, 0.96);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #6a778b;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1;
+      box-shadow: 0 2px 4px rgba(15, 23, 42, 0.03);
+    }
+
+    .pill-tab-demo.active {
+      border-color: rgba(36, 99, 235, 0.18);
+      background: #2463eb;
+      color: #ffffff;
+      box-shadow: 0 8px 18px rgba(36,99,235,0.18);
+    }
+
+    .segment-rail {
+      display: grid;
+      gap: 6px;
+      padding: 6px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, var(--paper-soft) 0%, var(--paper-muted) 100%);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .segment-rail-item {
+      min-height: 40px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .segment-rail-item.active {
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      border: 1px solid var(--line);
+      color: var(--blue-dark);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .btn-row,
+    .chip-row,
+    .icon-row,
+    .card-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .sample-button {
+      height: 46px;
+      padding: 0 18px;
+      border-radius: 16px;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.26);
+    }
+
+    .primary-btn {
+      background: linear-gradient(180deg, #5ea4ff 0%, #2463eb 100%);
+      border-color: rgba(36, 99, 235, 0.22);
+      color: #ffffff;
+      box-shadow: 0 12px 24px rgba(36, 99, 235, 0.24);
+    }
+
+    .secondary-btn {
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      border-color: var(--line);
+      color: var(--ink);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .ghost-btn {
+      background: rgba(36, 99, 235, 0.08);
+      border-color: rgba(36, 99, 235, 0.12);
+      color: var(--blue-ink);
+    }
+
+    .filter-chip,
+    .soft-pill {
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+    }
+
+    .filter-chip {
+      height: 38px;
+      padding: 0 14px;
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      border: 1px solid var(--line);
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .soft-pill {
+      height: 32px;
+      padding: 0 12px;
+      background: rgba(36, 99, 235, 0.08);
+      border: 1px solid rgba(36, 99, 235, 0.12);
+      font-size: 11px;
+      color: var(--blue-ink);
+      font-weight: 700;
+    }
+
+    .symbol {
+      font-family: 'Material Symbols Outlined';
+      font-weight: 400;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .icon-tile {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      display: grid;
+      place-items: center;
+      color: var(--blue-dark);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .search-bar {
+      height: 56px;
+      border-radius: 18px;
+      border: 1px solid var(--line-strong);
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      gap: 12px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), var(--shadow-soft);
+    }
+
+    .search-placeholder {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-preview {
+      padding: 18px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, var(--paper-soft) 0%, var(--paper-muted) 100%);
+      border: 1px solid var(--line);
+      min-height: 140px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .floating-nav {
+      width: 100%;
+      max-width: 280px;
+      height: 68px;
+      border-radius: 999px;
+      background: var(--nav-bg);
+      border: 1px solid var(--line);
+      backdrop-filter: blur(24px) saturate(160%);
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.9), 0 18px 36px rgba(15, 23, 42, 0.08);
+      color: rgba(23,23,23,0.52);
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-item.active {
+      color: var(--blue-dark);
+    }
+
+    .nav-item.active .nav-core {
+      background: rgba(36,99,235,0.14);
+      color: var(--blue-dark);
+      box-shadow: inset 0 0 0 1px rgba(36,99,235,0.06);
+    }
+
+    .nav-core {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+    }
+
+    .dark-card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .venue-card,
+    .recommendation-card,
+    .saved-card,
+    .profile-card,
+    .filter-panel {
+      border-radius: 24px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .venue-card,
+    .recommendation-card,
+    .saved-card,
+    .profile-card,
+    .filter-panel {
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      color: var(--ink);
+    }
+
+    .venue-hero {
+      height: 130px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.72)),
+        linear-gradient(135deg, #dbeaff 0%, #eef4fb 100%);
+      padding: 16px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .venue-body,
+    .saved-body,
+    .profile-body,
+    .filter-body,
+    .recommendation-body {
+      padding: 16px;
+    }
+
+    .mini-kicker {
+      font-size: 10px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .venue-title,
+    .recommendation-body strong,
+    .saved-body strong,
+    .profile-body strong,
+    .filter-body strong {
+      display: block;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 8px;
+    }
+
+    .card-sub,
+    .recommendation-body p,
+    .saved-body p,
+    .profile-body p,
+    .filter-body p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+    }
+
+    .stats-pill {
+      height: 28px;
+      padding: 0 10px;
+      border-radius: 999px;
+      background: rgba(36,99,235,0.08);
+      border: 1px solid rgba(36,99,235,0.12);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--blue-ink);
+    }
+
+    .option-row {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .option-chip {
+      min-height: 42px;
+      padding: 0 14px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      border: 1px solid var(--line);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .filter-system-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .filter-step-card {
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 470px;
+    }
+
+    .filter-step-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 14px 0;
+    }
+
+    .filter-step-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--ink);
+    }
+
+    .filter-step-titlebar {
+      flex: 1;
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      text-align: left;
+    }
+
+    .filter-step-progress {
+      padding: 8px 16px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .filter-step-progress span {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .filter-step-track {
+      height: 6px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(148, 163, 184, 0.18);
+    }
+
+    .filter-step-fill {
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #2463eb 0%, #4f8dff 100%);
+    }
+
+    .filter-step-body {
+      padding: 18px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .filter-step-copy h3 {
+      font-size: 28px;
+      line-height: 1.06;
+      letter-spacing: -0.04em;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .filter-step-copy p {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--muted);
+    }
+
+    .filter-step-options {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .filter-system-option {
+      min-height: 146px;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1.5px solid rgba(203, 213, 225, 0.92);
+      background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+      box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      gap: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .filter-system-option::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 32%, rgba(255, 255, 255, 0.72) 100%);
+      pointer-events: none;
+    }
+
+    .filter-system-option > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .filter-system-option .symbol {
+      font-size: 32px;
+      color: #2463eb;
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .filter-system-option strong {
+      font-size: 17px;
+      line-height: 1.35;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+    }
+
+    .filter-system-option.selected {
+      border-color: rgba(36, 99, 235, 0.4);
+      background: linear-gradient(180deg, #fbfdff 0%, #f1f6ff 100%);
+      box-shadow: 0 10px 24px rgba(36, 99, 235, 0.08);
+    }
+
+    .filter-system-option.selected::after {
+      background: linear-gradient(180deg, transparent 24%, rgba(36, 99, 235, 0.04) 100%);
+    }
+
+    .filter-system-option.selected .symbol {
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .filter-option-check {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      color: #2463eb;
+      font-size: 21px;
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .filter-tone-blush {
+      background: linear-gradient(180deg, #ffffff 0%, #fff8fb 100%);
+    }
+
+    .filter-tone-peach {
+      background: linear-gradient(180deg, #ffffff 0%, #fff9f6 100%);
+    }
+
+    .filter-tone-green {
+      background: linear-gradient(180deg, #ffffff 0%, #f4fcf7 100%);
+    }
+
+    .filter-tone-indigo {
+      background: linear-gradient(180deg, #ffffff 0%, #f7f8ff 100%);
+    }
+
+    .filter-step-summary {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .filter-step-summary strong {
+      display: block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .filter-step-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-step-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(36, 99, 235, 0.08);
+      color: #2463eb;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .filter-step-chip .symbol {
+      font-size: 16px;
+      font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+
+    .filter-step-footer {
+      margin-top: auto;
+      padding-top: 18px;
+    }
+
+    .filter-step-button {
+      width: 100%;
+      height: 52px;
+      border: 0;
+      border-radius: 14px;
+      background: #2463eb;
+      color: #ffffff;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 10px 20px rgba(36, 99, 235, 0.16);
+    }
+
+    .section-fragment,
+    .overlay-card,
+    .notification-card {
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .fragment-top {
+      padding: 18px 18px 14px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(36,99,235,0.08), rgba(36,99,235,0.02));
+    }
+
+    .fragment-top strong {
+      display: block;
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 6px;
+    }
+
+    .fragment-top span,
+    .fragment-body p,
+    .notification-copy span,
+    .overlay-copy p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .fragment-body,
+    .overlay-copy {
+      padding: 18px;
+    }
+
+    .mini-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .mini-row {
+      min-height: 48px;
+      padding: 0 14px;
+      border-radius: 16px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .mini-row strong,
+    .notification-copy strong,
+    .overlay-copy strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 2px;
+    }
+
+    .overlay-stage {
+      min-height: 270px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper-soft) 0%, var(--paper-muted) 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 18px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .overlay-stage::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(15,23,42,0.02), rgba(15,23,42,0.08));
+      pointer-events: none;
+    }
+
+    .dialog-card,
+    .bottom-sheet,
+    .toast-card,
+    .permission-card {
+      position: relative;
+      z-index: 1;
+      border-radius: 24px;
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .dialog-card,
+    .permission-card {
+      width: min(100%, 280px);
+      padding: 18px;
+    }
+
+    .bottom-sheet {
+      width: 100%;
+      padding: 14px 14px 16px;
+      border-radius: 28px 28px 20px 20px;
+    }
+
+    .sheet-context-preview {
+      position: absolute;
+      left: 18px;
+      right: 18px;
+      top: 18px;
+      padding: 14px 16px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 1;
+    }
+
+    .sheet-trigger {
+      position: relative;
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: var(--blue-dark);
+      background: rgba(36,99,235,0.12);
+      box-shadow: 0 10px 24px rgba(36,99,235,0.12);
+      flex-shrink: 0;
+    }
+
+    .sheet-trigger::after {
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 20px;
+      border: 1px solid rgba(36,99,235,0.18);
+    }
+
+    .sheet-callout-demo {
+      position: absolute;
+      right: 20px;
+      bottom: 186px;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.92);
+      color: var(--blue-dark);
+      font-size: 11px;
+      font-weight: 800;
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    .sheet-heading {
+      padding: 2px 4px 10px;
+    }
+
+    .sheet-heading strong {
+      display: block;
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-top: 4px;
+    }
+
+    .sheet-heading p {
+      margin-top: 6px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--muted);
+    }
+
+    .sheet-action-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .sheet-action-row.danger {
+      border-color: rgba(239, 68, 68, 0.14);
+      background: linear-gradient(180deg, rgba(254,242,242,0.96), rgba(255,247,247,0.96));
+    }
+
+    .sheet-action-copy {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .sheet-action-copy strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+    }
+
+    .sheet-action-copy span {
+      display: block;
+      margin-top: 4px;
+      font-size: 11px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .permission-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .overlay-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .overlay-btn {
+      flex: 1;
+      height: 42px;
+      border-radius: 14px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .overlay-btn.primary {
+      background: linear-gradient(180deg, #5ea4ff 0%, #2463eb 100%);
+      border-color: rgba(36, 99, 235, 0.22);
+      color: #ffffff;
+      box-shadow: 0 12px 24px rgba(36,99,235,0.24);
+    }
+
+    .notice-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .notification-showcase {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .notification-screen {
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+      min-height: 520px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .notification-screen-head {
+      padding: 18px 18px 12px;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(248,251,255,0.9));
+    }
+
+    .notification-screen-head.compact {
+      padding-bottom: 16px;
+    }
+
+    .notification-screen-headbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .notification-screen-title {
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .notification-screen-iconbtn {
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      background: rgba(148, 163, 184, 0.08);
+      flex-shrink: 0;
+    }
+
+    .notification-hero {
+      margin-top: 2px;
+      padding: 18px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 48%, #22c7eb 100%);
+      color: #ffffff;
+      box-shadow: 0 22px 50px rgba(37, 99, 235, 0.24);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .notification-hero strong {
+      display: block;
+      font-size: 23px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin: 8px 0;
+    }
+
+    .notification-hero p {
+      font-size: 12px;
+      line-height: 1.55;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .notification-hero-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.14);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .notification-kicker {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.7);
+    }
+
+    .notification-screen-body {
+      padding: 16px 18px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .notification-feed-card {
+      display: flex;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 22px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .notification-feed-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #2463eb;
+      background: rgba(36, 99, 235, 0.1);
+    }
+
+    .notification-feed-icon.warm {
+      color: #f59e0b;
+      background: rgba(245, 158, 11, 0.12);
+    }
+
+    .notification-feed-icon.green {
+      color: #10b981;
+      background: rgba(16, 185, 129, 0.12);
+    }
+
+    .notification-feed-copy {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .notification-feed-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .notification-feed-top strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 4px;
+    }
+
+    .notification-feed-top span,
+    .notification-feed-copy p,
+    .notification-setting-copy p,
+    .notification-channel-row span {
+      font-size: 12px;
+      line-height: 1.45;
+      color: var(--muted);
+    }
+
+    .notification-feed-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .notification-mini-btn {
+      height: 34px;
+      padding: 0 14px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: #ffffff;
+      background: #2463eb;
+      box-shadow: 0 8px 18px rgba(36,99,235,0.14);
+    }
+
+    .notification-mini-btn.secondary {
+      color: var(--ink);
+      background: transparent;
+      border-color: var(--line);
+      box-shadow: none;
+    }
+
+    .notification-settings-group {
+      padding: 16px;
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .notification-settings-group + .notification-settings-group {
+      margin-top: 14px;
+    }
+
+    .notification-settings-group strong.group-title {
+      display: block;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .notification-setting-row,
+    .notification-channel-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      background: rgba(148, 163, 184, 0.08);
+    }
+
+    .notification-setting-row + .notification-setting-row,
+    .notification-channel-row + .notification-channel-row {
+      margin-top: 10px;
+    }
+
+    .notification-setting-copy {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .notification-setting-copy strong,
+    .notification-channel-row strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 3px;
+    }
+
+    .notification-switch {
+      width: 40px;
+      height: 24px;
+      border-radius: 999px;
+      position: relative;
+      flex-shrink: 0;
+      background: rgba(148, 163, 184, 0.42);
+    }
+
+    .notification-switch::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: #ffffff;
+      box-shadow: 0 2px 6px rgba(15,23,42,0.12);
+    }
+
+    .notification-switch.active {
+      background: #2463eb;
+    }
+
+    .notification-switch.active::after {
+      left: 19px;
+    }
+
+    .notification-card {
+      padding: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .notification-dot {
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      background: rgba(36,99,235,0.1);
+      display: grid;
+      place-items: center;
+      color: var(--blue-dark);
+      flex-shrink: 0;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+
+    .notification-copy {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .notification-time {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      white-space: nowrap;
+      margin-left: 8px;
+    }
+
+    .empty-state {
+      min-height: 220px;
+      border-radius: 26px;
+      border: 1px dashed rgba(36,99,235,0.2);
+      background: linear-gradient(180deg, var(--paper-soft) 0%, var(--paper-muted) 100%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    body[data-theme="dark"] .section-fragment,
+    body[data-theme="dark"] .overlay-card,
+    body[data-theme="dark"] .notification-card,
+    body[data-theme="dark"] .dialog-card,
+    body[data-theme="dark"] .bottom-sheet,
+    body[data-theme="dark"] .toast-card,
+    body[data-theme="dark"] .permission-card {
+      background: rgba(15, 23, 42, 0.94);
+      border-color: var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    body[data-theme="dark"] .fragment-top,
+    body[data-theme="dark"] .overlay-stage,
+    body[data-theme="dark"] .mini-row,
+    body[data-theme="dark"] .empty-state,
+    body[data-theme="dark"] .notification-dot,
+    body[data-theme="dark"] .overlay-btn,
+    body[data-theme="dark"] .sheet-callout-demo,
+    body[data-theme="dark"] .sheet-action-row {
+      background: rgba(15,23,42,0.82);
+      border-color: var(--line);
+    }
+
+    .toggle {
+      width: 40px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(42,111,223,0.18);
+      position: relative;
+    }
+
+    .toggle::after {
+      content: '';
+      position: absolute;
+      top: 3px;
+      left: 19px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: white;
+    }
+
+    .reference-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .reference-card {
+      width: 268px;
+      flex: 0 0 268px;
+      padding: 16px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow-soft);
+      cursor: pointer;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .reference-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(36, 99, 235, 0.18);
+      box-shadow: 0 18px 34px rgba(15, 23, 42, 0.1);
+    }
+
+    .reference-card iframe {
+      width: 390px;
+      height: 844px;
+      border: none;
+      border-radius: 24px;
+      transform-origin: top left;
+      transform: scale(calc(236 / 390));
+      pointer-events: none;
+      clip-path: inset(0 round 24px);
+      position: relative;
+      z-index: 1;
+    }
+
+    .reference-shell {
+      width: 236px;
+      height: 510px;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper-soft) 0%, var(--paper-muted) 100%);
+      margin-bottom: 14px;
+      position: relative;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.4);
+    }
+
+    .reference-shell::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: transparent;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .reference-card strong {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 4px;
+    }
+
+    .reference-card span {
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.4;
+    }
+
+    .viewer-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(9, 17, 31, 0.48);
+      backdrop-filter: blur(12px);
+      z-index: 120;
+    }
+
+    .viewer-modal.open {
+      display: flex;
+    }
+
+    .viewer-backdrop {
+      position: absolute;
+      inset: 0;
+    }
+
+    .viewer-dialog {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 980px);
+      border-radius: 32px;
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      border: 1px solid var(--line);
+      box-shadow: 0 28px 80px rgba(15, 23, 42, 0.18);
+      padding: 20px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 390px;
+      gap: 20px;
+      align-items: start;
+      max-height: calc(100vh - 56px);
+    }
+
+    .viewer-copy {
+      min-width: 0;
+      padding: 8px 8px 8px 4px;
+    }
+
+    .viewer-kicker {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .viewer-copy h3 {
+      font-family: 'Manrope', sans-serif;
+      font-size: 30px;
+      line-height: 1;
+      letter-spacing: -0.05em;
+      margin-bottom: 12px;
+    }
+
+    .viewer-copy p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--muted);
+      max-width: 420px;
+    }
+
+    .viewer-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .viewer-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      height: 34px;
+      padding: 0 12px;
+      border-radius: 999px;
+      background: rgba(36,99,235,0.08);
+      border: 1px solid rgba(36,99,235,0.12);
+      color: var(--blue-ink);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .viewer-frame-wrap {
+      width: 390px;
+      max-width: 100%;
+      height: calc(100vh - 96px);
+      max-height: 844px;
+      border-radius: 30px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper-soft) 0%, var(--paper-muted) 100%);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .viewer-frame {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: transparent;
+    }
+
+    .viewer-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, var(--paper) 0%, var(--paper-soft) 100%);
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      box-shadow: var(--shadow-soft);
+      cursor: pointer;
+    }
+
+    body[data-theme="dark"] .board-header,
+    body[data-theme="dark"] .section,
+    body[data-theme="dark"] .meta-card,
+    body[data-theme="dark"] .token-card,
+    body[data-theme="dark"] .type-spec,
+    body[data-theme="dark"] .component-card,
+    body[data-theme="dark"] .reference-card,
+    body[data-theme="dark"] .reference-shell {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.96), rgba(11, 22, 43, 0.96));
+      border-color: var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    body[data-theme="dark"] .reference-card {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(9, 17, 31, 0.98));
+    }
+
+    body[data-theme="dark"] .viewer-dialog,
+    body[data-theme="dark"] .viewer-frame-wrap,
+    body[data-theme="dark"] .viewer-close {
+      background: linear-gradient(180deg, rgba(15, 23, 42, 0.98), rgba(9, 17, 31, 0.98));
+      border-color: var(--line);
+      box-shadow: var(--shadow);
+      color: var(--ink);
+    }
+
+    body[data-theme="dark"] .viewer-meta span {
+      background: rgba(36,99,235,0.16);
+      border-color: rgba(36,99,235,0.2);
+      color: #cfe0ff;
+    }
+
+    body[data-theme="dark"] .reference-shell {
+      background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+      border-color: rgba(148, 163, 184, 0.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+    }
+
+    body[data-theme="dark"] .reference-shell::before {
+      background: linear-gradient(180deg, rgba(2, 6, 23, 0.1), rgba(2, 6, 23, 0.02));
+    }
+
+    body[data-theme="dark"] .reference-card strong {
+      color: #e8eef8;
+    }
+
+    body[data-theme="dark"] .section-tag,
+    body[data-theme="dark"] .filter-chip,
+    body[data-theme="dark"] .soft-pill,
+    body[data-theme="dark"] .pill-tab-demo,
+    body[data-theme="dark"] .segment-pill,
+    body[data-theme="dark"] .segment-rail,
+    body[data-theme="dark"] .segment-rail-item.active,
+    body[data-theme="dark"] .ghost-btn,
+    body[data-theme="dark"] .secondary-btn,
+    body[data-theme="dark"] .icon-tile,
+    body[data-theme="dark"] .search-bar {
+      background: linear-gradient(180deg, rgba(19, 32, 58, 0.92), rgba(11, 22, 43, 0.92));
+      border-color: var(--line);
+      color: var(--ink);
+    }
+
+    body[data-theme="dark"] .pill-tab-demo.active {
+      background: #2463eb;
+      border-color: rgba(96, 165, 250, 0.24);
+      color: #ffffff;
+      box-shadow: 0 10px 22px rgba(36,99,235,0.26);
+    }
+
+    body[data-theme="dark"] .nav-preview,
+    body[data-theme="dark"] .venue-card,
+    body[data-theme="dark"] .recommendation-card,
+    body[data-theme="dark"] .saved-card,
+    body[data-theme="dark"] .profile-card,
+    body[data-theme="dark"] .filter-panel,
+    body[data-theme="dark"] .component-card[style] {
+      background: linear-gradient(180deg, #111827 0%, #0f172a 100%) !important;
+      border-color: var(--line);
+      color: var(--ink) !important;
+    }
+
+    body[data-theme="dark"] .venue-hero {
+      background:
+        linear-gradient(180deg, rgba(9, 17, 31, 0.12), rgba(9, 17, 31, 0.68)),
+        linear-gradient(135deg, rgba(91, 168, 255, 0.42) 0%, rgba(157, 207, 128, 0.3) 100%);
+    }
+
+    body[data-theme="dark"] .component-card[style] .component-label,
+    body[data-theme="dark"] .mini-kicker,
+    body[data-theme="dark"] .card-sub,
+    body[data-theme="dark"] .recommendation-body p,
+    body[data-theme="dark"] .saved-body p,
+    body[data-theme="dark"] .profile-body p,
+    body[data-theme="dark"] .filter-body p,
+    body[data-theme="dark"] .stats-pill,
+    body[data-theme="dark"] .option-chip {
+      color: var(--muted) !important;
+    }
+
+    body[data-theme="dark"] .stats-pill,
+    body[data-theme="dark"] .option-chip {
+      background: linear-gradient(180deg, rgba(19, 32, 58, 0.92), rgba(11, 22, 43, 0.92));
+      border-color: rgba(148, 163, 184, 0.12);
+    }
+
+    body[data-theme="dark"] .notification-screen,
+    body[data-theme="dark"] .notification-screen-head,
+    body[data-theme="dark"] .notification-feed-card,
+    body[data-theme="dark"] .notification-settings-group {
+      background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
+      border-color: var(--line);
+      color: var(--ink);
+    }
+
+    body[data-theme="dark"] .notification-screen-iconbtn,
+    body[data-theme="dark"] .notification-setting-row,
+    body[data-theme="dark"] .notification-channel-row {
+      background: rgba(19, 32, 58, 0.92);
+    }
+
+    body[data-theme="dark"] .notification-mini-btn.secondary {
+      color: var(--ink);
+      border-color: rgba(148, 163, 184, 0.12);
+    }
+
+    body[data-theme="dark"] .notification-switch {
+      background: rgba(71, 85, 105, 0.9);
+    }
+
+    body[data-theme="dark"] .filter-step-card,
+    body[data-theme="dark"] .filter-step-summary {
+      background: linear-gradient(180deg, #111827 0%, #0f172a 100%);
+      border-color: var(--line);
+      color: var(--ink);
+    }
+
+    body[data-theme="dark"] .filter-step-progress span,
+    body[data-theme="dark"] .filter-step-copy p,
+    body[data-theme="dark"] .filter-step-summary strong {
+      color: var(--muted);
+    }
+
+    body[data-theme="dark"] .filter-step-track {
+      background: rgba(51, 65, 85, 0.8);
+    }
+
+    body[data-theme="dark"] .filter-system-option {
+      border-color: rgba(148, 163, 184, 0.16);
+      background: linear-gradient(180deg, rgba(19, 32, 58, 0.92) 0%, rgba(11, 22, 43, 0.92) 100%);
+      box-shadow: 0 8px 18px rgba(2, 6, 23, 0.26);
+    }
+
+    body[data-theme="dark"] .filter-tone-blush,
+    body[data-theme="dark"] .filter-tone-peach,
+    body[data-theme="dark"] .filter-tone-green,
+    body[data-theme="dark"] .filter-tone-indigo {
+      background: linear-gradient(180deg, rgba(19, 32, 58, 0.92) 0%, rgba(11, 22, 43, 0.92) 100%);
+    }
+
+    body[data-theme="dark"] .filter-system-option::after {
+      background: linear-gradient(180deg, transparent 32%, rgba(15, 23, 42, 0.34) 100%);
+    }
+
+    body[data-theme="dark"] .filter-system-option.selected {
+      border-color: rgba(91, 168, 255, 0.34);
+      background: linear-gradient(180deg, rgba(28, 53, 99, 0.92) 0%, rgba(18, 36, 74, 0.96) 100%);
+      box-shadow: 0 10px 24px rgba(4, 12, 31, 0.34);
+    }
+
+    body[data-theme="dark"] .filter-step-chip {
+      background: rgba(91, 168, 255, 0.12);
+      color: #9bc6ff;
+    }
+
+    body[data-theme="dark"] .toggle {
+      background: rgba(91, 168, 255, 0.32);
+    }
+
+    @media (max-width: 1400px) {
+      .board-grid,
+      .wide-grid,
+      .filter-system-grid,
+      .notification-showcase {
+        grid-template-columns: 1fr;
+      }
+
+      .meta-grid {
+        min-width: 0;
+      }
+
+      .reference-grid {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .reference-card {
+        width: 100%;
+        flex-basis: 100%;
+      }
+
+      .viewer-modal {
+        padding: 12px;
+      }
+
+      .viewer-dialog {
+        grid-template-columns: 1fr;
+        padding: 16px;
+        max-height: calc(100vh - 24px);
+      }
+
+      .viewer-copy {
+        padding-right: 44px;
+      }
+
+      .viewer-frame-wrap {
+        width: 100%;
+        height: min(78vh, 844px);
+      }
+    }
+  </style>
+</head>
+<body data-theme="light">
+  <main class="board">
+    <section class="board-header">
+      <div class="header-copy">
+        <div class="eyebrow">Qaida Design File</div>
+        <h1>Отдельные элементы интерфейса как в Figma</h1>
+        <p>Здесь элементы разложены отдельно: foundations, кнопки, чипы, поиск, нижняя навигация, карточки, фильтры и reference screens. Это уже читается как UI kit и product board, а не как оболочка-редактор.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px;align-items:stretch;">
+        <button id="theme-toggle" type="button" class="sample-button secondary-btn" style="justify-content:center;min-width:220px;">Dark Theme</button>
+        <div class="meta-grid">
+        <div class="meta-card">
+          <strong>22</strong>
+          <span>reference screens для сверки</span>
+        </div>
+        <div class="meta-card">
+          <strong>30+</strong>
+          <span>отдельных UI-элементов на полотне</span>
+        </div>
+        <div class="meta-card">
+          <strong>4</strong>
+          <span>уровня системы: foundation, components, sections, references</span>
+        </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="board-grid">
+      <div class="column">
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <h2>Foundation</h2>
+              <p>Базовые токены проекта: цвет, типографика и характер визуальной системы.</p>
+            </div>
+            <div class="section-tag">Tokens</div>
+          </div>
+          <div class="tokens-grid">
+            <div class="token-card">
+              <h3>Color Palette</h3>
+              <div class="palette-row">
+                <div class="swatch">
+                  <div class="swatch-chip" style="background:#7db7ff;"></div>
+                  <span>Primary Blue<br>#7DB7FF</span>
+                </div>
+                <div class="swatch">
+                  <div class="swatch-chip" style="background:#2463eb;"></div>
+                  <span>Action Blue<br>#2463EB</span>
+                </div>
+                <div class="swatch">
+                  <div class="swatch-chip" style="background:#9dcf80;"></div>
+                  <span>Nature Green<br>#9DCF80</span>
+                </div>
+                <div class="swatch">
+                  <div class="swatch-chip" style="background:#f4b3a6;"></div>
+                  <span>Accent Rose<br>#FFD7C9</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="token-card">
+              <h3>Surface Mix</h3>
+              <div class="palette-row">
+                <div class="swatch">
+                  <div class="swatch-chip" style="background:#ffffff;"></div>
+                  <span>Canvas Paper<br>#FFFFFF</span>
+                </div>
+                <div class="swatch">
+                  <div class="swatch-chip" style="background:#eef4fb;"></div>
+                  <span>Soft Surface<br>#EEF4FB</span>
+                </div>
+                <div class="swatch">
+                  <div class="swatch-chip" style="background:#d9ebff;"></div>
+                  <span>Tint Surface<br>#D9EBFF</span>
+                </div>
+                <div class="swatch">
+                  <div class="swatch-chip" style="background:#1f2431;"></div>
+                  <span>Dark Surface<br>#1F2431</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="token-card">
+              <h3>Typography</h3>
+              <div class="type-spec">
+                <div class="type-display">Qaida</div>
+                <span>Display / Manrope 800 / Tight</span>
+              </div>
+              <div class="type-spec">
+                <div class="type-title">Explore places around you</div>
+                <span>Title / Inter 800 / Product headline</span>
+              </div>
+              <div class="type-spec" style="margin-bottom:0;">
+                <div class="type-body">Уверенный продуктовый текст с мягкими тёплыми поверхностями и насыщенными акцентами для discovery flow.</div>
+                <span>Body / Inter 400-600 / Supporting copy</span>
+              </div>
+            </div>
+
+            <div class="token-card">
+              <h3>Icon Language</h3>
+              <div class="icon-row">
+                <div class="icon-tile"><span class="symbol">home</span></div>
+                <div class="icon-tile"><span class="symbol">search</span></div>
+                <div class="icon-tile"><span class="symbol">bookmark</span></div>
+                <div class="icon-tile"><span class="symbol">person</span></div>
+                <div class="icon-tile"><span class="symbol">local_cafe</span></div>
+                <div class="icon-tile"><span class="symbol">restaurant</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <h2>Core Components</h2>
+              <p>Базовые reusable элементы: CTA, chips, поисковая строка, icon containers и floating nav.</p>
+            </div>
+            <div class="section-tag">Components</div>
+          </div>
+          <div class="component-board">
+            <div class="component-card">
+              <div class="btn-row">
+                <div class="sample-button primary-btn"><span class="symbol" style="font-size:18px;">arrow_forward</span>Начать</div>
+                <div class="sample-button secondary-btn">Сохранить</div>
+                <div class="sample-button ghost-btn">Позже</div>
+              </div>
+              <div class="component-label">Primary, secondary и ghost-кнопки для онбординга, CTA и системных действий.</div>
+            </div>
+
+            <div class="component-card">
+              <div class="chip-row">
+                <div class="filter-chip"><span class="symbol" style="font-size:18px;color:#2463eb;">tune</span>Фильтры</div>
+                <div class="filter-chip"><span class="symbol" style="font-size:18px;color:#2463eb;">location_on</span>Алматы</div>
+                <div class="soft-pill"><span class="symbol" style="font-size:16px;color:#2463eb;">restaurant</span>Рестораны</div>
+                <div class="soft-pill"><span class="symbol" style="font-size:16px;color:#2463eb;">celebration</span>Развлечения</div>
+              </div>
+              <div class="component-label">Category chips и лёгкие пилюли для быстрых сценариев выбора.</div>
+            </div>
+
+            <div class="component-card">
+              <div class="search-bar">
+                <div class="search-placeholder"><span class="symbol" style="font-size:20px;color:#2463eb;">search</span>Искать кофейни, бары, места</div>
+                <span class="symbol" style="font-size:20px;color:#6f6a63;">mic</span>
+              </div>
+              <div class="component-label">Search input как ключевой discovery-элемент с мягкой surface-подачей.</div>
+            </div>
+
+            <div class="component-card nav-preview">
+              <div class="floating-nav">
+                <div class="nav-item active"><div class="nav-core"><span class="symbol">home</span></div><span>Главная</span></div>
+                <div class="nav-item"><div class="nav-core"><span class="symbol">search</span></div><span>Поиск</span></div>
+                <div class="nav-item"><div class="nav-core"><span class="symbol">bookmark</span></div><span>Сохранено</span></div>
+                <div class="nav-item"><div class="nav-core"><span class="symbol">person</span></div><span>Профиль</span></div>
+              </div>
+              <div class="component-label" style="position:absolute;left:18px;right:18px;bottom:18px;color:var(--muted);">Floating pill навигация как единый паттерн проекта.</div>
+            </div>
+
+            <div class="component-card">
+              <div class="segment-stack">
+                <div class="pill-tabs-demo">
+                  <div class="pill-tab-demo active">Все</div>
+                  <div class="pill-tab-demo">Новые</div>
+                  <div class="pill-tab-demo">Просмотренные</div>
+                </div>
+                <div class="pill-tabs-demo">
+                  <div class="pill-tab-demo active">Места</div>
+                  <div class="pill-tab-demo">Коллекции</div>
+                </div>
+                <div class="pill-tabs-demo">
+                  <div class="pill-tab-demo active">Рядом</div>
+                  <div class="pill-tab-demo">Популярные</div>
+                  <div class="pill-tab-demo">Для тебя</div>
+                </div>
+              </div>
+              <div class="component-label">Единый pill-tabs паттерн как на экранах уведомлений и сохранённых: активный tab залит primary, остальные остаются светлыми капсулами.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <h2>Cards & Modules</h2>
+              <p>Более крупные блоки: карточка места, рекомендация, сохранённое, профиль и панель фильтров.</p>
+            </div>
+            <div class="section-tag">Modules</div>
+          </div>
+          <div class="dark-card-grid">
+            <div class="venue-card">
+              <div class="venue-hero">
+                <div>
+                  <div class="mini-kicker">Featured Venue</div>
+                  <div class="venue-title">Choco Café</div>
+                  <div class="card-sub">Кофейня · Панорамный вид</div>
+                </div>
+                <div class="soft-pill" style="background:rgba(42,111,223,0.08);border-color:rgba(42,111,223,0.12);color:var(--blue-dark);">4.8 ★</div>
+              </div>
+              <div class="venue-body">
+                <div class="stats-row">
+                  <div class="stats-pill"><span class="symbol" style="font-size:16px;">schedule</span>Открыто</div>
+                  <div class="stats-pill"><span class="symbol" style="font-size:16px;">route</span>12 мин</div>
+                  <div class="stats-pill"><span class="symbol" style="font-size:16px;">bookmark</span>Сохранить</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="recommendation-card">
+              <div class="recommendation-body">
+                <div class="mini-kicker">Recommendation</div>
+                <strong>Вечерний маршрут</strong>
+                <p>Собранный набор мест для ужина, коктейлей и поздней прогулки по центру.</p>
+                <div class="stats-row">
+                  <div class="stats-pill"><span class="symbol" style="font-size:16px;">restaurant</span>3 места</div>
+                  <div class="stats-pill"><span class="symbol" style="font-size:16px;">distance</span>1.8 км</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="saved-card">
+              <div class="saved-body">
+                <div class="mini-kicker">Saved Collection</div>
+                <strong>На выходные</strong>
+                <p>Подборка сохранённых мест с акцентом на атмосферу, еду и тихие локации.</p>
+                <div class="stats-row">
+                  <div class="stats-pill"><span class="symbol" style="font-size:16px;">bookmark</span>12 сохранено</div>
+                  <div class="stats-pill"><span class="symbol" style="font-size:16px;">share</span>Поделиться</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-card">
+              <div class="profile-body">
+                <div class="mini-kicker">Profile Snapshot</div>
+                <strong>Aruzhan T.</strong>
+                <p>Любит specialty coffee, тихие рестораны и новые прогулочные маршруты.</p>
+                <div class="stats-row">
+                  <div class="stats-pill"><span class="symbol" style="font-size:16px;">favorite</span>24 лайка</div>
+                  <div class="stats-pill"><span class="symbol" style="font-size:16px;">location_on</span>Алматы</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <h2>App Sections</h2>
+              <p>Те же секции, что используются в reference screens: верх главной, блок коллекций и профильные настройки без placeholder-упрощений.</p>
+            </div>
+            <div class="section-tag">Sections</div>
+          </div>
+          <div class="wide-grid">
+            <div class="section-fragment">
+              <div class="fragment-top">
+                <strong>Home Discovery Section</strong>
+                <span>Тот же верхний ритм, что в главной: avatar, greeting, поиск и hero-card для входа в discovery flow.</span>
+              </div>
+              <div class="fragment-body">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;">
+                  <div style="display:flex;align-items:center;gap:12px;min-width:0;">
+                    <div class="notification-dot" style="width:42px;height:42px;border-radius:999px;overflow:hidden;padding:0;background:rgba(36,99,235,0.12);">
+                      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC3G1RoByyT4bMUUyOVRWUIwWHkEwkqPhqBi-6WnIurXz47r9bY-HE-zwi6xdkm8JRJuPnxhJrxkCTWCSEQsBynWE-FhYEiAUCJXZG8waGNnSWU0L0JTbZmMNxZcWxroumYD4gYKuqw-fFM4RvpeUHN_MLLPpVHs_rw8j7SmFMKUIVq8IWHzzzT1ImpBFW7ifLxBiv5m-vcjgYGeWXF8D3RW_26jtTq1m-EWTtMjZWve-ulSDoDGOMdEDAfdqnZSq72hvtsMYA1A" alt="avatar" style="width:100%;height:100%;object-fit:cover;" />
+                    </div>
+                    <div>
+                      <strong style="display:block;font-size:15px;font-weight:800;letter-spacing:-0.03em;">Привет 👋 Гость</strong>
+                      <span style="font-size:11px;color:var(--muted);">Алматы · гид по местам</span>
+                    </div>
+                  </div>
+                  <div class="notification-dot"><span class="symbol">notifications</span></div>
+                </div>
+                <div class="search-bar" style="margin-bottom:12px;">
+                  <div class="search-placeholder"><span class="symbol" style="font-size:20px;color:#2463eb;">search</span>Поиск мест...</div>
+                  <span class="symbol" style="font-size:20px;color:#6f7280;">tune</span>
+                </div>
+                <div class="venue-card">
+                  <div class="venue-hero">
+                    <div>
+                      <div class="mini-kicker">Discover</div>
+                      <div class="venue-title">Не знаешь куда сходить?</div>
+                      <div class="card-sub">Открой для себя лучшие заведения города</div>
+                    </div>
+                  </div>
+                  <div class="venue-body">
+                    <div class="sample-button primary-btn" style="width:100%;justify-content:center;">Найти место <span class="symbol" style="font-size:18px;">arrow_forward</span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-fragment">
+              <div class="fragment-top">
+                <strong>Saved Collections Section</strong>
+                <span>Секция сохранённого повторяет reference screen: pill-tabs сверху и крупные collection cards вместо списка-заглушки.</span>
+              </div>
+              <div class="fragment-body">
+                <div class="pill-tabs-demo" style="margin-bottom:14px;">
+                  <div class="pill-tab-demo">Места</div>
+                  <div class="pill-tab-demo active">Коллекции</div>
+                </div>
+                <div class="mini-list">
+                  <div class="saved-card" style="overflow:hidden;">
+                    <div style="height:86px;background:linear-gradient(180deg, rgba(15,23,42,0.16), rgba(15,23,42,0.58)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=900&q=80') center/cover;"></div>
+                    <div class="saved-body">
+                      <div class="mini-kicker">Collection</div>
+                      <strong>На выходные</strong>
+                      <p>6 мест · brunch, прогулка и тихий ужин</p>
+                      <div class="stats-row">
+                        <div class="stats-pill"><span class="symbol" style="font-size:16px;">bookmark</span>6 мест</div>
+                        <div class="stats-pill"><span class="symbol" style="font-size:16px;">schedule</span>Обновлена сегодня</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="saved-card" style="overflow:hidden;">
+                    <div style="height:86px;background:linear-gradient(180deg, rgba(15,23,42,0.16), rgba(15,23,42,0.58)), url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=900&q=80') center/cover;"></div>
+                    <div class="saved-body">
+                      <div class="mini-kicker">Collection</div>
+                      <strong>Для свидания</strong>
+                      <p>4 места · спокойная атмосфера и тёплый свет</p>
+                      <div class="stats-row">
+                        <div class="stats-pill"><span class="symbol" style="font-size:16px;">favorite</span>4 места</div>
+                        <div class="stats-pill"><span class="symbol" style="font-size:16px;">share</span>Поделиться</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="section-fragment">
+              <div class="fragment-top">
+                <strong>Profile Settings Section</strong>
+                <span>Профильный блок собран по reference screen: avatar, quick stats и список основных настроек.</span>
+              </div>
+              <div class="fragment-body">
+                <div style="display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:14px;">
+                  <div style="position:relative;width:84px;height:84px;margin-bottom:12px;">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmSDHU8OooC4XjK7v7OmG7eXHf6WAJNjhEFpb4dKodjSXAEJBgl2Zl-lj5hBJaoibDb4m7zbETAn9uq3HORRqJhNUYbyNWbvL7MwcP0Ly4-Kl8dvqyLoDn8dFWZaj0nnS-3EIdwZyTIyPp8_py_lPOc74ge2eJRkf6pdjDbNJ8uqwlJr9BiCBo-n_rBDWlmYx-iyaQ85S9I8BqNycQfH7JvEf2XD0DLHxRaF2iSZTmLEHI6IhBWdm9Z_izFzjtsoYoRNuOc-vabw" alt="profile" style="width:100%;height:100%;object-fit:cover;border-radius:999px;border:2px solid #2463eb;box-shadow:0 0 0 6px rgba(36,99,235,0.08);" />
+                    <span class="symbol" style="position:absolute;right:0;bottom:2px;width:24px;height:24px;border-radius:999px;background:#2463eb;color:#fff;display:grid;place-items:center;font-size:14px;border:2px solid #fff;">edit</span>
+                  </div>
+                  <strong style="display:block;font-size:18px;font-weight:800;letter-spacing:-0.03em;">Александр</strong>
+                  <span style="font-size:12px;color:var(--muted);margin-top:4px;">alexander@qaida.app</span>
+                </div>
+                <div class="stats-row" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:0 0 14px;">
+                  <div class="stats-pill" style="height:auto;min-height:62px;justify-content:center;flex-direction:column;border-radius:18px;background:linear-gradient(180deg,var(--paper) 0%, var(--paper-soft) 100%);color:var(--ink);gap:4px;"><strong style="font-size:18px;margin:0;">12</strong><span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.12em;">мест</span></div>
+                  <div class="stats-pill" style="height:auto;min-height:62px;justify-content:center;flex-direction:column;border-radius:18px;background:linear-gradient(180deg,var(--paper) 0%, var(--paper-soft) 100%);color:var(--ink);gap:4px;"><strong style="font-size:18px;margin:0;">5</strong><span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.12em;">отзывов</span></div>
+                  <div class="stats-pill" style="height:auto;min-height:62px;justify-content:center;flex-direction:column;border-radius:18px;background:linear-gradient(180deg,var(--paper) 0%, var(--paper-soft) 100%);color:var(--ink);gap:4px;"><strong style="font-size:18px;margin:0;">24</strong><span style="font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.12em;">избранном</span></div>
+                </div>
+                <div class="mini-list">
+                  <div class="mini-row"><div><strong>Мои данные</strong></div><span class="symbol" style="color:#2463eb;">chevron_right</span></div>
+                  <div class="mini-row"><div><strong>История поиска</strong></div><span class="symbol" style="color:#2463eb;">chevron_right</span></div>
+                  <div class="mini-row"><div><strong>Уведомления</strong></div><span class="symbol" style="color:#2463eb;">chevron_right</span></div>
+                  <div class="mini-row"><div><strong>Язык</strong><span>Русский</span></div><span class="symbol" style="color:#2463eb;">chevron_right</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="column">
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <h2>Filter System</h2>
+              <p>Тот же 4-шаговый filter flow из Reference Screens: progress, вопрос, карточки выбора и финальный summary без упрощённого демо-состояния.</p>
+            </div>
+            <div class="section-tag">4-Step Flow</div>
+          </div>
+          <div class="filter-system-grid">
+            <div class="filter-step-card">
+              <div class="filter-step-topbar">
+                <span class="filter-step-icon symbol">arrow_back</span>
+                <div class="filter-step-titlebar">Фильтры</div>
+                <span class="filter-step-icon symbol" style="justify-content:flex-end;color:var(--muted);">close</span>
+              </div>
+              <div class="filter-step-progress">
+                <span>Шаг 1 из 4</span>
+                <div class="filter-step-track"><div class="filter-step-fill" style="width:25%;"></div></div>
+              </div>
+              <div class="filter-step-body">
+                <div class="filter-step-copy">
+                  <h3>С кем идёшь?</h3>
+                  <p>Выбери один вариант, как в первом экране фильтра.</p>
+                </div>
+                <div class="filter-step-options">
+                  <div class="filter-system-option">
+                    <span class="symbol">person</span>
+                    <strong>Один</strong>
+                  </div>
+                  <div class="filter-system-option filter-tone-peach">
+                    <span class="symbol">diversity_1</span>
+                    <strong>Пара</strong>
+                  </div>
+                  <div class="filter-system-option selected">
+                    <span class="filter-option-check symbol">check_circle</span>
+                    <span class="symbol">groups</span>
+                    <strong>Друзья</strong>
+                  </div>
+                  <div class="filter-system-option filter-tone-green">
+                    <span class="symbol">family_restroom</span>
+                    <strong>Семья</strong>
+                  </div>
+                </div>
+                <div class="filter-step-footer">
+                  <button class="filter-step-button" type="button">
+                    Далее
+                    <span class="symbol" style="font-size:18px;color:inherit;">arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="filter-step-card">
+              <div class="filter-step-topbar">
+                <span class="filter-step-icon symbol">arrow_back</span>
+                <div class="filter-step-titlebar">Фильтры</div>
+                <span class="filter-step-icon symbol" style="justify-content:flex-end;color:var(--muted);">close</span>
+              </div>
+              <div class="filter-step-progress">
+                <span>Шаг 2 из 4</span>
+                <div class="filter-step-track"><div class="filter-step-fill" style="width:50%;"></div></div>
+              </div>
+              <div class="filter-step-body">
+                <div class="filter-step-copy">
+                  <h3>Какой вайб нужен?</h3>
+                  <p>Те же мягкие карточки настроения и спокойный выбранный state.</p>
+                </div>
+                <div class="filter-step-options">
+                  <div class="filter-system-option selected">
+                    <span class="filter-option-check symbol">check_circle</span>
+                    <span class="symbol">local_cafe</span>
+                    <strong>Уютно</strong>
+                  </div>
+                  <div class="filter-system-option filter-tone-blush">
+                    <span class="symbol">favorite</span>
+                    <strong>Романтично</strong>
+                  </div>
+                  <div class="filter-system-option filter-tone-peach">
+                    <span class="symbol">celebration</span>
+                    <strong>Празднично</strong>
+                  </div>
+                  <div class="filter-system-option filter-tone-green">
+                    <span class="symbol">park</span>
+                    <strong>На воздухе</strong>
+                  </div>
+                </div>
+                <div class="filter-step-footer">
+                  <button class="filter-step-button" type="button">
+                    Далее
+                    <span class="symbol" style="font-size:18px;color:inherit;">arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="filter-step-card">
+              <div class="filter-step-topbar">
+                <span class="filter-step-icon symbol">arrow_back</span>
+                <div class="filter-step-titlebar">Фильтры</div>
+                <span class="filter-step-icon symbol" style="justify-content:flex-end;color:var(--muted);">close</span>
+              </div>
+              <div class="filter-step-progress">
+                <span>Шаг 3 из 4</span>
+                <div class="filter-step-track"><div class="filter-step-fill" style="width:75%;"></div></div>
+              </div>
+              <div class="filter-step-body">
+                <div class="filter-step-copy">
+                  <h3>Какой бюджет комфортен?</h3>
+                  <p>Тот же компактный выбор диапазона с акцентом только на одном варианте.</p>
+                </div>
+                <div class="filter-step-options">
+                  <div class="filter-system-option">
+                    <span class="symbol">savings</span>
+                    <strong>До 4 000 ₸</strong>
+                  </div>
+                  <div class="filter-system-option selected">
+                    <span class="filter-option-check symbol">check_circle</span>
+                    <span class="symbol">payments</span>
+                    <strong>4 000–8 000 ₸</strong>
+                  </div>
+                  <div class="filter-system-option filter-tone-peach">
+                    <span class="symbol">credit_card</span>
+                    <strong>8 000–15 000 ₸</strong>
+                  </div>
+                  <div class="filter-system-option filter-tone-indigo">
+                    <span class="symbol">tune</span>
+                    <strong>Без разницы</strong>
+                  </div>
+                </div>
+                <div class="filter-step-footer">
+                  <button class="filter-step-button" type="button">
+                    Далее
+                    <span class="symbol" style="font-size:18px;color:inherit;">arrow_forward</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="filter-step-card">
+              <div class="filter-step-topbar">
+                <span class="filter-step-icon symbol">arrow_back</span>
+                <div class="filter-step-titlebar">Фильтры</div>
+                <span class="filter-step-icon symbol" style="justify-content:flex-end;color:var(--muted);">close</span>
+              </div>
+              <div class="filter-step-progress">
+                <span>Шаг 4 из 4</span>
+                <div class="filter-step-track"><div class="filter-step-fill" style="width:100%;"></div></div>
+              </div>
+              <div class="filter-step-body">
+                <div class="filter-step-copy">
+                  <h3>Что ещё важно?</h3>
+                  <p>Финальный экран повторяет multi-select и блок с уже выбранными параметрами.</p>
+                </div>
+                <div class="filter-step-options">
+                  <div class="filter-system-option selected">
+                    <span class="filter-option-check symbol">check_circle</span>
+                    <span class="symbol">schedule</span>
+                    <strong>Открыто сейчас</strong>
+                  </div>
+                  <div class="filter-system-option selected">
+                    <span class="filter-option-check symbol">check_circle</span>
+                    <span class="symbol">directions_car</span>
+                    <strong>Парковка</strong>
+                  </div>
+                  <div class="filter-system-option">
+                    <span class="symbol">restaurant</span>
+                    <strong>Халал</strong>
+                  </div>
+                  <div class="filter-system-option filter-tone-green">
+                    <span class="symbol">deck</span>
+                    <strong>Терраса</strong>
+                  </div>
+                </div>
+                <div class="filter-step-summary">
+                  <strong>Выбрано</strong>
+                  <div class="filter-step-chips">
+                    <span class="filter-step-chip"><span class="symbol">groups</span>Друзья</span>
+                    <span class="filter-step-chip"><span class="symbol">local_cafe</span>Уютно</span>
+                    <span class="filter-step-chip"><span class="symbol">payments</span>4 000–8 000 ₸</span>
+                  </div>
+                </div>
+                <div class="filter-step-footer">
+                  <button class="filter-step-button" type="button">Показать 18 мест</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <h2>Onboarding Atoms</h2>
+              <p>Элементы онбординга отдельно: мини-карточки, бейджи категорий и CTA-композиция.</p>
+            </div>
+            <div class="section-tag">Onboarding</div>
+          </div>
+          <div class="component-board">
+            <div class="component-card" style="background:linear-gradient(180deg,#ffffff 0%,#f7faff 100%);color:var(--ink);">
+              <div class="card-stack">
+                <div style="width:150px;padding:14px 16px;border-radius:18px;background:linear-gradient(160deg,#ffffff,#f4f8ff);border:1px solid rgba(15,23,42,0.08);box-shadow:0 10px 24px rgba(15,23,42,0.06);">
+                  <div style="width:34px;height:34px;border-radius:10px;background:rgba(36,99,235,.12);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="symbol" style="font-size:18px;color:#2463eb;">local_cafe</span></div>
+                  <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Choco Café</div>
+                  <div style="font-size:11px;color:var(--muted);">Кафе · 4.8 ★</div>
+                </div>
+                <div style="width:150px;padding:14px 16px;border-radius:18px;background:linear-gradient(160deg,#ffffff,#fff4f2);border:1px solid rgba(15,23,42,0.08);box-shadow:0 10px 24px rgba(15,23,42,0.06);">
+                  <div style="width:34px;height:34px;border-radius:10px;background:rgba(36,99,235,.12);display:flex;align-items:center;justify-content:center;margin-bottom:10px;"><span class="symbol" style="font-size:18px;color:#2463eb;">local_bar</span></div>
+                  <div style="font-size:13px;font-weight:700;margin-bottom:4px;">Sky Bar</div>
+                  <div style="font-size:11px;color:var(--muted);">Бар · 4.9 ★</div>
+                </div>
+              </div>
+              <div class="component-label" style="color:var(--muted);">Отдельные карточки marquee-strip, уже готовые как atoms для онбординга.</div>
+            </div>
+
+            <div class="component-card">
+              <div class="chip-row">
+                <div class="soft-pill"><span class="symbol" style="font-size:16px;color:#2463eb;">restaurant</span>Рестораны</div>
+                <div class="soft-pill"><span class="symbol" style="font-size:16px;color:#2463eb;">local_cafe</span>Кафе</div>
+                <div class="soft-pill"><span class="symbol" style="font-size:16px;color:#2463eb;">celebration</span>Развлечения</div>
+                <div class="soft-pill"><span class="symbol" style="font-size:16px;color:#2463eb;">park</span>Природа</div>
+              </div>
+              <div class="component-label">Feature pills как отдельный ряд, без привязки к конкретному экрану.</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <h2>Notifications</h2>
+              <p>Те же product-паттерны, что в reference screens: feed с gradient hero и отдельный экран notification settings вместо абстрактных alert rows.</p>
+            </div>
+            <div class="section-tag">Alerts</div>
+          </div>
+          <div class="notification-showcase">
+            <div class="notification-screen">
+              <div class="notification-screen-head compact">
+                <div class="notification-screen-headbar" style="margin-bottom:12px;">
+                  <div class="notification-screen-title">Уведомления</div>
+                </div>
+                <div class="pill-tabs-demo" style="margin-bottom:0;">
+                  <div class="pill-tab-demo active">Все</div>
+                  <div class="pill-tab-demo">Новые</div>
+                  <div class="pill-tab-demo">Просмотренные</div>
+                </div>
+              </div>
+              <div class="notification-screen-body">
+                <div class="notification-hero">
+                  <div>
+                    <div class="notification-kicker">Сегодня</div>
+                    <strong>3 новых события</strong>
+                    <p>Подобрали места рядом, сохранили обновления по коллекциям и напоминаниям.</p>
+                  </div>
+                  <div class="notification-hero-badge"><span class="symbol" style="font-size:26px;color:inherit;font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 24;">notifications_active</span></div>
+                </div>
+
+                <div class="notification-feed-card">
+                  <div class="notification-feed-icon"><span class="symbol" style="font-variation-settings:'FILL' 1,'wght' 600;">notifications</span></div>
+                  <div class="notification-feed-copy">
+                    <div class="notification-feed-top">
+                      <div>
+                        <strong>Новое место рядом</strong>
+                        <p>Открылось кафе Lumiere в 8 минутах от тебя. Рейтинг уже 4.8.</p>
+                      </div>
+                      <span>2 мин</span>
+                    </div>
+                    <div class="notification-feed-actions">
+                      <div class="notification-mini-btn">Открыть</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="notification-feed-card">
+                  <div class="notification-feed-icon warm"><span class="symbol" style="font-variation-settings:'FILL' 1,'wght' 600;">schedule</span></div>
+                  <div class="notification-feed-copy">
+                    <div class="notification-feed-top">
+                      <div>
+                        <strong>Бронь через 30 минут</strong>
+                        <p>The Choco ждёт тебя сегодня в 19:30. Построить маршрут?</p>
+                      </div>
+                      <span>18:58</span>
+                    </div>
+                    <div class="notification-feed-actions">
+                      <div class="notification-mini-btn secondary">Позже</div>
+                      <div class="notification-mini-btn">Маршрут</div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="notification-feed-card">
+                  <div class="notification-feed-icon green"><span class="symbol" style="font-variation-settings:'FILL' 1,'wght' 600;">bookmark_added</span></div>
+                  <div class="notification-feed-copy">
+                    <div class="notification-feed-top">
+                      <div>
+                        <strong>Добавлено в коллекцию</strong>
+                        <p>The Choco сохранено в подборку «На выходные». Хочешь открыть всю коллекцию?</p>
+                      </div>
+                      <span>12:40</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="notification-screen">
+              <div class="notification-screen-head">
+                <div class="notification-screen-headbar" style="margin-bottom:0;">
+                  <span class="notification-screen-iconbtn symbol">arrow_back</span>
+                  <div class="notification-screen-title" style="flex:1;text-align:center;padding-right:38px;">Настройки уведомлений</div>
+                </div>
+              </div>
+              <div class="notification-screen-body">
+                <div class="notification-settings-group">
+                  <strong class="group-title">Системные уведомления</strong>
+                  <div class="notification-setting-row">
+                    <div class="notification-setting-copy">
+                      <strong>Новые места рядом</strong>
+                      <p>Когда появляются подходящие места поблизости.</p>
+                    </div>
+                    <div class="notification-switch active"></div>
+                  </div>
+                  <div class="notification-setting-row">
+                    <div class="notification-setting-copy">
+                      <strong>Напоминания о брони</strong>
+                      <p>За 30 минут до визита и в момент выхода.</p>
+                    </div>
+                    <div class="notification-switch active"></div>
+                  </div>
+                  <div class="notification-setting-row">
+                    <div class="notification-setting-copy">
+                      <strong>Сохранённые коллекции</strong>
+                      <p>Изменения в общих подборках и папках.</p>
+                    </div>
+                    <div class="notification-switch"></div>
+                  </div>
+                </div>
+
+                <div class="notification-settings-group">
+                  <strong class="group-title">Каналы</strong>
+                  <div class="notification-channel-row">
+                    <strong>Push-уведомления</strong>
+                    <span style="font-weight:700;color:#2463eb;">Включены</span>
+                  </div>
+                  <div class="notification-channel-row">
+                    <strong>Email-дайджест</strong>
+                    <span>1 раз в неделю</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div>
+              <h2>Popups & Overlays</h2>
+              <p>Набор всех popup-паттернов: toast, dialog, bottom sheet, permission prompt и empty states.</p>
+            </div>
+            <div class="section-tag">Popups</div>
+          </div>
+          <div class="wide-grid">
+            <div class="overlay-card">
+              <div class="overlay-stage">
+                <div class="detail-card" style="position:absolute;top:18px;left:18px;right:18px;display:flex;align-items:center;justify-content:space-between;padding:14px 16px;border-radius:24px;background:linear-gradient(180deg,var(--paper) 0%, var(--paper-soft) 100%);border:1px solid var(--line);box-shadow:var(--shadow-soft);">
+                  <div>
+                    <strong style="display:block;font-size:16px;font-weight:800;letter-spacing:-0.03em;">The Choco</strong>
+                    <p style="margin-top:4px;font-size:11px;color:var(--muted);">4.9 · 1.2 км · ул. Абая</p>
+                  </div>
+                  <div style="position:relative;width:44px;height:44px;border-radius:18px;display:grid;place-items:center;background:rgba(36,99,235,0.12);color:var(--blue-dark);box-shadow:0 10px 24px rgba(36,99,235,0.16);overflow:visible;">
+                    <span class="symbol" style="font-variation-settings:'FILL' 1,'wght' 600;font-size:20px;position:relative;z-index:1;">bookmark</span>
+                    <span style="position:absolute;inset:-4px;border-radius:20px;border:1px solid rgba(36,99,235,0.18);animation:save-ping 1.6s ease-out infinite;"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="overlay-copy">
+                <strong>Toast / Snackbar</strong>
+                <p>Подтверждение сохранения встроено прямо в кнопку флажка без отдельного toast-слоя.</p>
+              </div>
+            </div>
+
+            <div class="overlay-card">
+              <div class="overlay-stage">
+                <div class="dialog-card">
+                  <div class="notification-dot" style="margin-bottom:12px;"><span class="symbol">delete</span></div>
+                  <div class="overlay-copy" style="padding:0;">
+                    <strong>Удалить из сохранённых?</strong>
+                    <p>Это место исчезнет из коллекции, но его можно будет сохранить снова позже.</p>
+                  </div>
+                  <div class="overlay-actions">
+                    <div class="overlay-btn">Отмена</div>
+                    <div class="overlay-btn primary">Удалить</div>
+                  </div>
+                </div>
+              </div>
+              <div class="overlay-copy">
+                <strong>Confirm Dialog</strong>
+                <p>Подтверждение для удаления, logout, отмены брони и других критичных действий.</p>
+              </div>
+            </div>
+
+            <div class="overlay-card">
+              <div class="overlay-stage">
+                <div class="permission-card">
+                  <div class="notification-dot"><span class="symbol">location_on</span></div>
+                  <div class="overlay-copy" style="padding:0;">
+                    <strong>Разрешить доступ к геолокации</strong>
+                    <p>Так приложение сможет находить места рядом и строить релевантные рекомендации.</p>
+                  </div>
+                  <div class="overlay-actions" style="margin-top:0;">
+                    <div class="overlay-btn">Позже</div>
+                    <div class="overlay-btn primary">Разрешить</div>
+                  </div>
+                </div>
+              </div>
+              <div class="overlay-copy">
+                <strong>Permission Prompt</strong>
+                <p>Системный prompt для геолокации, push-уведомлений и доступа к календарю.</p>
+              </div>
+            </div>
+
+            <div class="overlay-card">
+              <div class="overlay-stage" style="align-items:flex-end;">
+                <div class="sheet-context-preview">
+                  <div>
+                    <strong style="display:block;font-size:15px;font-weight:800;letter-spacing:-0.03em;">The Choco</strong>
+                    <p style="margin-top:4px;font-size:11px;color:var(--muted);">Нажатие на more_horiz открывает контекстное меню места.</p>
+                  </div>
+                  <div class="sheet-trigger"><span class="symbol">more_horiz</span></div>
+                </div>
+                <div class="sheet-callout-demo"><span class="symbol" style="font-size:15px;font-variation-settings:'FILL' 1,'wght' 600;">touch_app</span>sheet открыт</div>
+                <div class="bottom-sheet">
+                  <div style="width:48px;height:5px;border-radius:999px;background:rgba(148,163,184,.42);margin:0 auto 14px;"></div>
+                  <div class="sheet-heading">
+                    <div class="section-tag" style="display:inline-flex;padding:6px 10px;font-size:10px;">Menu Actions</div>
+                    <strong>Управление местом</strong>
+                    <p>Bottom sheet вызывается из кнопки управления и показывает только контекстные действия для текущей карточки.</p>
+                  </div>
+                  <div class="mini-list">
+                    <div class="sheet-action-row">
+                      <div class="notification-dot"><span class="symbol">share</span></div>
+                      <div class="sheet-action-copy"><strong>Поделиться</strong><span>Отправить карточку места или скопировать ссылку.</span></div>
+                      <span class="symbol" style="color:#2463eb;">chevron_right</span>
+                    </div>
+                    <div class="sheet-action-row">
+                      <div class="notification-dot"><span class="symbol">map</span></div>
+                      <div class="sheet-action-copy"><strong>Открыть в карте</strong><span>Построить маршрут до места без перехода в отдельный экран.</span></div>
+                      <span class="symbol" style="color:#2463eb;">chevron_right</span>
+                    </div>
+                    <div class="sheet-action-row">
+                      <div class="notification-dot"><span class="symbol">bookmark_add</span></div>
+                      <div class="sheet-action-copy"><strong>Сохранить в коллекцию</strong><span>Быстрое действие без перегрузки основного экрана.</span></div>
+                      <span class="symbol" style="color:#2463eb;">chevron_right</span>
+                    </div>
+                    <div class="sheet-action-row danger">
+                      <div class="notification-dot" style="background:rgba(239,68,68,0.1);color:#ef4444;"><span class="symbol">flag</span></div>
+                      <div class="sheet-action-copy"><strong style="color:#dc2626;">Пожаловаться</strong><span>Редкое действие вынесено вниз как отдельный danger item.</span></div>
+                      <span class="symbol" style="color:#ef4444;">chevron_right</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="overlay-copy">
+                <strong>Bottom Sheet</strong>
+                <p>Теперь видно весь сценарий: пользователь нажал кнопку управления на карточке, экран затемнился, а снизу открылось контекстное меню с primary и danger действиями.</p>
+              </div>
+            </div>
+
+            <div class="overlay-card">
+              <div class="empty-state">
+                <div class="notification-dot" style="width:56px;height:56px;border-radius:18px;"><span class="symbol" style="font-size:28px;">bookmark</span></div>
+                <strong style="font-size:18px;font-weight:800;letter-spacing:-0.03em;">Пока ничего не сохранено</strong>
+                <p style="max-width:240px;">Добавляй любимые места в коллекции, чтобы быстро вернуться к ним позже.</p>
+                <div class="sample-button primary-btn">Найти места</div>
+              </div>
+              <div class="overlay-copy">
+                <strong>Empty State</strong>
+                <p>Пустые состояния для saved, reviews, history и notification center.</p>
+              </div>
+            </div>
+
+            <div class="overlay-card">
+              <div class="overlay-stage">
+                <div class="dialog-card">
+                  <div class="notification-dot" style="margin-bottom:12px;"><span class="symbol">notifications_active</span></div>
+                  <div class="overlay-copy" style="padding:0;">
+                    <strong>Включить уведомления?</strong>
+                    <p>Будем сообщать о новых местах рядом, сохранённых подборках и напоминаниях.</p>
+                  </div>
+                  <div class="overlay-actions">
+                    <div class="overlay-btn">Не сейчас</div>
+                    <div class="overlay-btn primary">Включить</div>
+                  </div>
+                </div>
+              </div>
+              <div class="overlay-copy">
+                <strong>Notification Popup</strong>
+                <p>Попап отдельного запроса на уведомления, кампаний и реактивации пользователя.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section class="section">
+      <div class="section-head">
+        <div>
+          <h2>Reference Screens</h2>
+          <p>Полные экраны оставлены внизу только для сверки и сопоставления компонентов с готовыми композициями.</p>
+        </div>
+        <div class="section-tag">References</div>
+      </div>
+      <div class="reference-grid" id="reference-grid"></div>
+    </section>
+  </main>
+
+  <div class="viewer-modal" id="viewer-modal" aria-hidden="true">
+    <div class="viewer-backdrop" data-close-viewer></div>
+    <div class="viewer-dialog" role="dialog" aria-modal="true" aria-labelledby="viewer-title">
+      <button class="viewer-close" type="button" id="viewer-close" aria-label="Закрыть">
+        <span class="symbol">close</span>
+      </button>
+      <div class="viewer-copy">
+        <div class="viewer-kicker">Interactive Preview</div>
+        <h3 id="viewer-title">Reference Screen</h3>
+        <p id="viewer-description">Открытый экран можно прокручивать внутри окна, чтобы проверить реальную композицию и длинные состояния.</p>
+        <div class="viewer-meta">
+          <span id="viewer-sub">qaida</span>
+          <span><span class="symbol" style="font-size:16px;">open_in_new</span>Прокручиваемый экран</span>
+        </div>
+      </div>
+      <div class="viewer-frame-wrap">
+        <iframe class="viewer-frame" id="viewer-frame" sandbox="allow-scripts allow-same-origin allow-forms" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const screens = [
+      { src: 'qaida_2/code.html', name: 'Онбординг', sub: 'qaida_2' },
+      { src: 'qaida_3/code.html', name: 'Главная', sub: 'qaida_3' },
+      { src: 'qaida_18/code.html', name: 'Поиск', sub: 'qaida_18' },
+      { src: 'qaida_4/code.html', name: 'Фильтр · Компания', sub: 'qaida_4' },
+      { src: 'qaida_15/code.html', name: 'Фильтр · Вайб', sub: 'qaida_15' },
+      { src: 'qaida_16/code.html', name: 'Фильтр · Бюджет', sub: 'qaida_16' },
+      { src: 'qaida_17/code.html', name: 'Фильтр · Параметры', sub: 'qaida_17' },
+      { src: 'qaida_1/code.html', name: 'Результаты', sub: 'qaida_1' },
+      { src: 'qaida_5/code.html', name: 'Рекомендации', sub: 'qaida_5' },
+      { src: 'qaida_6/code.html', name: 'Детали', sub: 'qaida_6' },
+      { src: 'qaida_7/code.html', name: 'Сохранённые', sub: 'qaida_7' },
+      { src: 'qaida_19/code.html', name: 'Коллекции', sub: 'qaida_19' },
+      { src: 'qaida_20/code.html', name: 'Детали коллекции', sub: 'qaida_20' },
+      { src: 'qaida_11/code.html', name: 'Empty State', sub: 'qaida_11' },
+      { src: 'qaida_9/code.html', name: 'Уведомления', sub: 'qaida_9' },
+      { src: 'qaida_21/code.html', name: 'Настройки уведомлений', sub: 'qaida_21' },
+      { src: 'qaida_10/code.html', name: 'Bottom Sheet', sub: 'qaida_10' },
+      { src: 'qaida_12/code.html', name: 'Confirm Dialog', sub: 'qaida_12' },
+      { src: 'qaida_13/code.html', name: 'Permission Popup', sub: 'qaida_13' },
+      { src: 'qaida_14/code.html', name: 'Toast', sub: 'qaida_14' },
+      { src: 'qaida_8/code.html', name: 'Профиль', sub: 'qaida_8' },
+      { src: 'qaida_22/code.html', name: 'Мои данные', sub: 'qaida_22' }
+    ];
+
+    const referenceGrid = document.getElementById('reference-grid');
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const viewerModal = document.getElementById('viewer-modal');
+    const viewerFrame = document.getElementById('viewer-frame');
+    const viewerTitle = document.getElementById('viewer-title');
+    const viewerSub = document.getElementById('viewer-sub');
+    const viewerClose = document.getElementById('viewer-close');
+
+    function getPreviewThemeStyles(theme, mode = 'preview') {
+      const scrollingStyles = mode === 'modal'
+        ? `
+          html, body { overflow-y: auto !important; }
+          body { min-height: 100dvh !important; }
+          ::-webkit-scrollbar { width: 10px !important; display: block !important; }
+          ::-webkit-scrollbar-thumb { background: rgba(148,163,184,.5) !important; border-radius: 999px !important; }
+          * { scrollbar-width: thin !important; }
+        `
+        : `
+          * { scrollbar-width:none !important; }
+          ::-webkit-scrollbar { display:none !important; }
+          body { overflow:hidden !important; }
+        `;
+
+      if (theme !== 'dark') {
+        return `
+          html { color-scheme: light !important; }
+          html, body { background: #f8fafc !important; }
+          ${scrollingStyles}
+        `;
+      }
+
+      return `
+        html { color-scheme: dark !important; }
+        html, body { background: #0b1220 !important; }
+        ${scrollingStyles}
+        body > div[style*="position:fixed"][style*="bottom:0"] {
+          background: linear-gradient(to top, rgba(2,6,23,0.98) 0%, rgba(2,6,23,0.72) 55%, transparent 100%) !important;
+        }
+        body > div[style*="position:fixed"][style*="bottom:0"] nav {
+          background: rgba(15,23,42,0.78) !important;
+          border: 1px solid rgba(148,163,184,.18) !important;
+          box-shadow: 0 12px 30px rgba(2,6,23,.34), 0 0 0 .5px rgba(255,255,255,.03) inset !important;
+        }
+        body > div[style*="position:fixed"][style*="bottom:0"] nav a span {
+          color: #94a3b8 !important;
+        }
+        body > div[style*="position:fixed"][style*="bottom:0"] nav a[style*="background:#2463eb"] span,
+        body > div[style*="position:fixed"][style*="bottom:0"] nav a[style*="background:rgba(36,99,235,.14)"] span {
+          color: #2463eb !important;
+        }
+        body > div[style*="position:fixed"][style*="bottom:0"] nav a[style*="background:#2463eb"],
+        body > div[style*="position:fixed"][style*="bottom:0"] nav a[style*="background:rgba(36,99,235,.14)"] {
+          background: rgba(36,99,235,.14) !important;
+          box-shadow: inset 0 0 0 1px rgba(36,99,235,.06) !important;
+        }
+        body[data-preview-screen="qaida_2"] {
+          background: linear-gradient(180deg,#0b1220 0%,#111827 100%) !important;
+          color: #e5eefb !important;
+        }
+        body[data-preview-screen="qaida_2"] .orb { opacity: .9 !important; }
+        body[data-preview-screen="qaida_2"] .strip-left > div,
+        body[data-preview-screen="qaida_2"] .strip-right > div {
+          background: linear-gradient(180deg, #111827, #0f172a) !important;
+          border: 1px solid rgba(148,163,184,.14) !important;
+          box-shadow: 0 12px 30px rgba(2,6,23,.18) !important;
+        }
+        body[data-preview-screen="qaida_2"] .strip-left > div > div:nth-child(2),
+        body[data-preview-screen="qaida_2"] .strip-right > div > div:nth-child(2) {
+          color: #f8fafc !important;
+        }
+        body[data-preview-screen="qaida_2"] .strip-left > div > div:nth-child(3),
+        body[data-preview-screen="qaida_2"] .strip-right > div > div:nth-child(3) {
+          color: #94a3b8 !important;
+        }
+        body[data-preview-screen="qaida_2"] div[style*="Алматы · Гид по местам"] {
+          color: #94a3b8 !important;
+        }
+        body[data-preview-screen="qaida_2"] span[style*="Рестораны"],
+        body[data-preview-screen="qaida_2"] span[style*="Кафе"],
+        body[data-preview-screen="qaida_2"] span[style*="Развлечения"],
+        body[data-preview-screen="qaida_2"] span[style*="Природа"] {
+          background: rgba(15,23,42,.76) !important;
+          border-color: rgba(148,163,184,.16) !important;
+          color: #94a3b8 !important;
+          box-shadow: none !important;
+        }
+        body[data-preview-screen="qaida_2"] button[style*="Начать"] {
+          box-shadow: 0 12px 30px rgba(37,99,235,.28) !important;
+        }
+      `;
+    }
+
+    function applyPreviewTheme(frame, mode = 'preview') {
+      try {
+        const d = frame.contentDocument;
+        if (!d || !d.documentElement) return;
+
+        d.documentElement.classList.toggle('dark', body.dataset.theme === 'dark');
+        if (d.body) {
+          const path = frame.dataset.baseSrc || '';
+          const screenKey = path.split('/')[0] || '';
+          d.body.dataset.previewScreen = screenKey;
+        }
+
+        let s = d.getElementById('preview-theme-style');
+        if (!s) {
+          s = d.createElement('style');
+          s.id = 'preview-theme-style';
+          d.head.appendChild(s);
+        }
+        s.textContent = getPreviewThemeStyles(body.dataset.theme, mode);
+      } catch (e) {}
+    }
+
+    function openViewer(screen) {
+      viewerTitle.textContent = screen.name;
+      viewerSub.textContent = screen.sub;
+      viewerFrame.dataset.baseSrc = screen.src;
+      viewerFrame.src = screen.src;
+      viewerFrame.onload = function() { applyPreviewTheme(viewerFrame, 'modal'); };
+      viewerModal.classList.add('open');
+      viewerModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeViewer() {
+      viewerModal.classList.remove('open');
+      viewerModal.setAttribute('aria-hidden', 'true');
+      viewerFrame.src = 'about:blank';
+      document.body.style.overflow = '';
+    }
+
+    screens.forEach((screen) => {
+      const card = document.createElement('article');
+      card.className = 'reference-card';
+      card.tabIndex = 0;
+      card.innerHTML = `
+        <div class="reference-shell">
+          <iframe src="${screen.src}" sandbox="allow-scripts allow-same-origin allow-forms" loading="lazy" scrolling="no"></iframe>
+        </div>
+        <strong>${screen.name}</strong>
+        <span>${screen.sub}</span>
+      `;
+
+      const frame = card.querySelector('iframe');
+      frame.dataset.baseSrc = screen.src;
+      frame.onload = function() { applyPreviewTheme(frame, 'preview'); };
+      card.addEventListener('click', () => openViewer(screen));
+      card.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openViewer(screen);
+        }
+      });
+      referenceGrid.appendChild(card);
+    });
+
+    function syncThemeLabel() {
+      themeToggle.textContent = body.dataset.theme === 'dark' ? 'Light Theme' : 'Dark Theme';
+    }
+
+    themeToggle.addEventListener('click', () => {
+      body.dataset.theme = body.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.querySelectorAll('.reference-card iframe').forEach((frame) => applyPreviewTheme(frame, 'preview'));
+      if (viewerModal.classList.contains('open')) {
+        applyPreviewTheme(viewerFrame, 'modal');
+      }
+      syncThemeLabel();
+    });
+
+    viewerClose.addEventListener('click', closeViewer);
+    viewerModal.addEventListener('click', (event) => {
+      if (event.target.hasAttribute('data-close-viewer')) {
+        closeViewer();
+      }
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && viewerModal.classList.contains('open')) {
+        closeViewer();
+      }
+    });
+
+    syncThemeLabel();
+  </script>
+</body>
+</html>

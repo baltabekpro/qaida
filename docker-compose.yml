@@ -1,0 +1,53 @@
+services:
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: qaida_api
+    environment:
+      APP_NAME: Qaida API
+      APP_ENV: development
+      APP_HOST: 0.0.0.0
+      APP_PORT: 8000
+      DATABASE_URL: postgresql+psycopg://qaida:qaida@db:5432/qaida
+      REDIS_URL: redis://redis:6379/0
+      DEFAULT_USER_EMAIL: demo@qaida.app
+      JWT_SECRET: change-me
+      JWT_ALGORITHM: HS256
+      ACCESS_TOKEN_EXPIRE_MINUTES: 60
+      REFRESH_TOKEN_EXPIRE_DAYS: 14
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    volumes:
+      - ./backend:/app
+
+  db:
+    image: postgres:17-alpine
+    container_name: qaida_db
+    environment:
+      POSTGRES_DB: qaida
+      POSTGRES_USER: qaida
+      POSTGRES_PASSWORD: qaida
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U qaida -d qaida"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: qaida_redis
+    ports:
+      - "6379:6379"
+
+volumes:
+  postgres_data:

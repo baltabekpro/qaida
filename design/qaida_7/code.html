@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2463eb",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0F0F0F",
+                        "card-dark": "#1A1A1A",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.fill {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="flex items-center p-4 justify-between max-w-2xl mx-auto w-full">
+<h1 class="text-slate-900 dark:text-white text-xl font-bold tracking-tight flex-1">Сохранённые места</h1>
+<button class="text-slate-600 dark:text-slate-400">
+<span class="material-symbols-outlined">more_horiz</span>
+</button>
+</div>
+<!-- Tabs -->
+<div class="px-4 pb-4 max-w-2xl mx-auto w-full">
+<div class="flex gap-2 overflow-x-auto pb-1 text-sm">
+<a class="rounded-full bg-primary px-4 py-2 font-semibold text-white whitespace-nowrap" href="#">Места</a>
+<a class="rounded-full border border-slate-200 bg-white px-4 py-2 font-semibold text-slate-600 whitespace-nowrap dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300" href="#">Коллекции</a>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-1 p-6 grid grid-cols-2 gap-6 max-w-2xl mx-auto w-full">
+<!-- Card 1 -->
+<div class="flex flex-col gap-3 group">
+<div class="aspect-square w-full overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 relative">
+<img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Cozy modern coffee shop interior view" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0YGijMcQvriVsE-PIGN4hch-HhqoOOeR7U3ON9jV-eSdx-OfeyZqbIljgCHHFM8RU8ZYndKVzWOCqsaUDlN5xNsdmeSw8AHM8jWUa8DrAf96qKFWML5OSW04S03YnUmjsSunvu2bIcNWrk0ValPfZvLMqNkkd7IB9LSBRiSa7May2OjmWhoUtSdActMvu7NEDJ1z0g05XCMMxWLrJI1REwmRI5PNgbaz3CG6chEFjIdxsUwQfR29ws6R0-kjcXNLt9Q2GXMTMzQ"/>
+<button class="absolute top-2 right-2 size-8 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md text-white opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+</div>
+<div class="px-1">
+<h3 class="text-slate-900 dark:text-white text-sm font-semibold truncate">Кофейня 'Утро'</h3>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-amber-400 text-xs fill">star</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">4.8</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="flex flex-col gap-3 group">
+<div class="aspect-square w-full overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 relative">
+<img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Green city park with walking path" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQxDi_3kE9DaWqt70QIbcRfWpRzi8FCRKjousHL0lwdXoYziPIEO762_sD65sfpovXU5pmWpwSm9y4JUjw2JT_dijeVpFfd3lwbKDPN-GPwlXMlKRZxRHJOShwXKAWZ9TJLcV6hT8RIXN_drDgFGKhdQX9YCyC9btfyZc4nZl2nPe-qifxSKQWp7DkNaBVrN3y5Oca4UBvOSX6oFVBAHbXjbLRwp75gDyJ8f-1_mtlvSNBkN2eEIGM0D2tm1Ze6w98s3GiDDVcNQ"/>
+<button class="absolute top-2 right-2 size-8 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md text-white opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+</div>
+<div class="px-1">
+<h3 class="text-slate-900 dark:text-white text-sm font-semibold truncate">Парк Культуры</h3>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-amber-400 text-xs fill">star</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">4.5</span>
+</div>
+</div>
+</div>
+<!-- Card 3 (Full Width Style) -->
+<div class="flex flex-col gap-3 group">
+<div class="aspect-square w-full overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 relative">
+<img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Fine dining restaurant interior evening lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBY3t8EX4X7LmLVw3LTA-yVe1Lhf6woeI_Czig4Yf73tnUFza25BnJorsNGrjlEn2_SCNd6cjSa10DPhYMpt0KUDigSl4eI-PPvkGmoZNxyUKjxb_qijKZ6nyr30m0Ql8nzDRNHaPoegv5vMwKxKH7hNkrNKer4aMRHzoTW-mndMevIpGgfG7z1M3ECz9wG555nwnlG9BiC3BfmN2n7fAiohVGXMvQKbupApiJ4vYXxWnNYeaSUeulsOnvSEMPjqqseeyuevSdtNA"/>
+<button class="absolute top-2 right-2 size-8 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md text-white opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+</div>
+<div class="px-1">
+<h3 class="text-slate-900 dark:text-white text-sm font-semibold truncate">Ресторан "Горизонт"</h3>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-amber-400 text-xs fill">star</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">4.7</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="flex flex-col gap-3 group">
+<div class="aspect-square w-full overflow-hidden rounded-2xl bg-slate-200 dark:bg-slate-800 relative">
+<img class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Modern library bookshelf and reading area" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-X_ypqsOm2gDzqvxr96ejqhUamQmZaASZYdVB8ZC7mj8r210-UwilBdzrEyjoV7kotcwqbt7mHv5cM8HiyGSqvkFPafc3aKrlzbJh1Asa0F5FXjAVxjLJpG5fPVEpmsAjmxPgmbHFk5BGJZcRF5gZ1315VTQxfvXovqhSTWX38Q2XMJz7b9PKsxBoxVUa9LKqT9DX4r-wdCbCB-on8u7c9rLc8qdCmWnTpAonJF2M_n0hCLMcpSaqOAFq2SsXiAqGo1O68g0keQ"/>
+<button class="absolute top-2 right-2 size-8 flex items-center justify-center rounded-full bg-black/20 backdrop-blur-md text-white opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-base">close</span>
+</button>
+</div>
+<div class="px-1">
+<h3 class="text-slate-900 dark:text-white text-sm font-semibold truncate">Центральная Библиотека</h3>
+<div class="flex items-center gap-1 mt-0.5">
+<span class="material-symbols-outlined text-amber-400 text-xs fill">star</span>
+<span class="text-xs text-slate-500 dark:text-slate-400 font-medium">4.9</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<div style="position:fixed;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(255,255,255,0.98) 0%,rgba(255,255,255,0.72) 55%,transparent 100%);padding-bottom:20px;display:flex;justify-content:center;align-items:flex-end;z-index:50;pointer-events:none;min-height:110px;">
+<nav style="display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.78);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border:1px solid rgba(148,163,184,.28);border-radius:9999px;padding:8px 16px;box-shadow:0 12px 30px rgba(15,23,42,.12),0 0 0 0.5px rgba(255,255,255,.9) inset;pointer-events:auto;">
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#64748b;">home</span><span style="font-size:9px;font-weight:500;color:#64748b;font-family:Inter,sans-serif;">Главная</span></a>
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#64748b;">search</span><span style="font-size:9px;font-weight:500;color:#64748b;font-family:Inter,sans-serif;">Поиск</span></a>
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;background:rgba(36,99,235,.14);box-shadow:inset 0 0 0 1px rgba(36,99,235,.06);text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#2463eb;font-variation-settings:'FILL' 1,'wght' 400;">bookmark</span><span style="font-size:9px;font-weight:600;color:#2463eb;font-family:Inter,sans-serif;">Сохранено</span></a>
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#64748b;">person</span><span style="font-size:9px;font-weight:500;color:#64748b;font-family:Inter,sans-serif;">Профиль</span></a>
+</nav>
+</div>
+</body></html>

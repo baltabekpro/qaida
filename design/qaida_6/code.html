@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2463eb",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#111621",
+                    },
+                    fontFamily: {
+                        "display": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<title>The Choco - Venue Detail</title>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+
+        .route-state-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.08), rgba(15, 23, 42, 0.34));
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            pointer-events: none;
+            z-index: 12;
+        }
+
+        .route-callout {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 268px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            box-shadow: 0 14px 28px rgba(15, 23, 42, 0.14);
+            color: #2463eb;
+            font-size: 11px;
+            font-weight: 700;
+            z-index: 14;
+            white-space: nowrap;
+        }
+
+        .route-sheet {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 106px;
+            padding: 0 12px;
+            z-index: 13;
+        }
+
+        .route-sheet__card {
+            border-radius: 30px;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            background: rgba(255, 255, 255, 0.96);
+            box-shadow: 0 -18px 50px rgba(15, 23, 42, 0.16);
+            overflow: hidden;
+        }
+
+        .route-sheet__handle {
+            width: 54px;
+            height: 5px;
+            border-radius: 999px;
+            background: rgba(148, 163, 184, 0.52);
+            margin: 12px auto 0;
+        }
+
+        .route-sheet__body {
+            padding: 14px 16px 16px;
+        }
+
+        .route-kicker {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #94a3b8;
+        }
+
+        .route-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 8px;
+        }
+
+        .route-head h2 {
+            font-size: 26px;
+            line-height: 1.02;
+            letter-spacing: -0.04em;
+            font-weight: 700;
+            color: #172033;
+        }
+
+        .route-head p,
+        .route-step__meta,
+        .route-mode__time,
+        .route-summary__row span,
+        .route-secondary {
+            color: #6a778b;
+            font-size: 12px;
+            line-height: 1.45;
+        }
+
+        .route-close {
+            width: 38px;
+            height: 38px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            background: #f8fafc;
+            color: #6a778b;
+            flex-shrink: 0;
+        }
+
+        .route-modes {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .route-mode {
+            border-radius: 18px;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            background: #f8fafc;
+            padding: 12px 10px;
+            text-align: center;
+        }
+
+        .route-mode .material-symbols-outlined {
+            color: #2463eb;
+            font-size: 22px;
+        }
+
+        .route-mode__time {
+            display: block;
+            margin-top: 6px;
+            font-weight: 700;
+            color: #172033;
+            font-size: 13px;
+        }
+
+        .route-mode__label {
+            display: block;
+            margin-top: 2px;
+            color: #6a778b;
+            font-size: 12px;
+            line-height: 1.35;
+        }
+
+        .route-mode.active {
+            border-color: rgba(36, 99, 235, 0.3);
+            background: linear-gradient(180deg, #eef4ff, #dbeafe);
+            box-shadow: 0 10px 22px rgba(36, 99, 235, 0.12);
+        }
+
+        .route-summary {
+            margin-top: 16px;
+            padding: 14px;
+            border-radius: 22px;
+            background: linear-gradient(180deg, #f8fbff 0%, #eef4fb 100%);
+            border: 1px solid rgba(226, 232, 240, 0.9);
+        }
+
+        .route-summary__row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .route-step {
+            margin-top: 12px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .route-step__icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: rgba(36, 99, 235, 0.12);
+            color: #2463eb;
+            flex-shrink: 0;
+        }
+
+        .route-step__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #172033;
+            line-height: 1.35;
+        }
+
+        .route-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .route-primary,
+        .route-secondary {
+            height: 48px;
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 0 16px;
+            flex: 1;
+        }
+
+        .route-primary {
+            background: #2463eb;
+            color: #fff;
+            box-shadow: 0 12px 26px rgba(36, 99, 235, 0.2);
+            gap: 8px;
+        }
+
+        .route-secondary {
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            background: #ffffff;
+            color: #475569;
+        }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative mx-auto max-w-md min-h-screen bg-background-light dark:bg-background-dark pb-24">
+<!-- Header Image Section -->
+<div class="relative h-[240px] w-full overflow-hidden"><div class="absolute inset-0 bg-cover bg-center" data-alt="Modern upscale restaurant interior with warm lighting" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDAqkelf6QMwX-s0OWin5X_B9KFFEVDZq-iQHNWxUtTEZfviKmvjsY855xDUXOl8f6aUfbqtcWA9QoYRpS6SokMj-QaR3HJr8EIsDr5cqVeGe0lzVIKoiKrHqCZzbcb7jRksJraYzGFBzZ83JnCAiYqkocK_UCfbyNd2qsWGPCkBl2kwqgDDThPb7d9ppmMPpnwwRQ0-9EoYNWK8aAKmfTj6nxDN4HJRx3MXHIXhqZjgvQ4zJ6lK5Ka9Sd-aHJo-YjomPYRoQFPEw");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark via-background-dark/40 to-transparent"></div>
+<div class="absolute top-0 left-0 right-0 p-4 flex justify-end items-center">
+<button class="flex items-center justify-center size-10 rounded-full bg-background-dark/40 backdrop-blur-md text-white border border-white/10">
+<span class="material-symbols-outlined text-red-500">favorite</span>
+</button>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-6">
+<h1 class="text-3xl font-bold text-white">The Choco</h1>
+<div class="flex items-center gap-1 mt-1 text-primary">
+<span class="material-symbols-outlined text-lg fill-current">star</span>
+<span class="font-semibold text-white">4.8</span>
+<span class="text-slate-300 font-normal ml-1">· 124 отзыва</span>
+</div>
+</div></div>
+<!-- Content Container -->
+<div class="px-4 pt-6 relative z-10">
+<!-- Gallery Thumbnails -->
+<div class="flex gap-2 overflow-x-auto pb-4 no-scrollbar">
+<div class="size-20 shrink-0 rounded-lg bg-cover bg-center border-2 border-primary" data-alt="Close up of a chocolate dessert plate" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBW9xUuxTW9h_1wDp0mlTutmK5svqH5SIh7LES11JWnrdRYaxLbslORr4HCcTqCdhHwxF7BT1kSW298abDRtlRlYDpTR0HgUVoggSgTbUtUVBUMkFaYu-ESCkc0PKmIGwDmDalHe6cS2i0Bq1bKShdiuz6vqaxJ9kD0_frB9W-mETWEI-5RxUnCytADBSCBBn8y4M8L3HMHUG7Xla40mwlD4skSsJ0ukHbMpjCGNn4k6LOOn0_1lQA0WRR0i2XQ-FYppLvXosrjNA");'></div>
+<div class="size-20 shrink-0 rounded-lg bg-cover bg-center border border-white/10" data-alt="Barista making coffee in the restaurant" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAHXrwVVNN42i_kRPEzUXoakAKRGI39xEoCFZPZy6H49XeqXFRX87PYuhxEzumzmMpzTyDNkKYI8rvKyxCpXjv4W-u6F73BiKcgW7KQURkhuJ2ht1jHqVoONPPX5XC7NuIKC83nd27a8Bi6fD8nu8uVROaMn5qRs_HbiLMeniIxGSHjWIOaru3_hZpiuy0Y3Hz8OhfoxrvmZlW7oemqMTNi0JYNdwsKwCMEH9vgxpqmSJOUBFYfjYu8BUj64UGiespt03aJQmiQ8g");'></div>
+<div class="size-20 shrink-0 rounded-lg bg-cover bg-center border border-white/10" data-alt="Seating area near the window" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAT_dKsRGzxXbNXDDDSVGsXN6creaDlYUd1_JoESNAnQDy3arEKyKMrHZrLiMFydwOGHjycJzRGXnKLfZ1-Pt9gsxoIddFMHazprpdUWw-sfYtHaMNrTQuWRWC_S3L2Qhywm7demuQcz0t14YBHN4yccWDYNXJXwuSwXdnByf1Pw0pNff4t9rtdkoerNiXPs_D7a36c5FuhqDosDSo_qN_CfYWaw18UFkgnCW2LF6k7YvI0i66ekz7ptg4dZWojUfbXBNUbiUiqpw");'></div>
+<div class="size-20 shrink-0 rounded-lg bg-cover bg-center border border-white/10" data-alt="Gourmet dish presentation" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBnWHbCsqpqsij5lV3KJnAFx9BktM5Hf0jK3uco9_yRwElLeu7dC2wf0T_W9E7andxjsP0svkiyKIxoKtVlSpfywwehzQP_ncoIkD_jpAO9VTc9vpMEpqCqUPbjNaEiGpS-TiPZsi0F68oJ5VELxcHIQfk8h05ZKkEv413wS7ZUTIx4jh1O_hG4VFtBxpV0-6UrO3aeG3-3-AFYw1XAQTYZBnfABFGgB-DLJE3810W6BBuh5bskiME8_i7G4YokLu0wI2G6t-4bEw");'></div>
+</div>
+<!-- Title & Basic Info -->
+<!-- Detail Info -->
+<div class="mt-6 space-y-4">
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">location_on</span>
+</div>
+<div>
+<p class="text-sm font-medium">ул. Абая 45, Алматы</p>
+<p class="text-xs text-slate-500">2.4 км от вас</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="size-10 rounded-lg bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">schedule</span>
+</div>
+<div>
+<p class="text-sm font-medium">Открыто до 23:00</p>
+<p class="text-xs text-slate-500">Пн-Вс: 09:00 - 23:00</p>
+</div>
+</div>
+</div>
+<!-- Main Action Button -->
+<div class="mt-10">
+<button class="w-full h-[56px] bg-primary hover:bg-primary/90 text-white font-bold rounded-[14px] flex items-center justify-center gap-2 shadow-lg shadow-primary/40 transition-all">
+                    Идём туда 
+                    <span class="material-symbols-outlined">map</span>
+</button>
+</div>
+<!-- Tabs Section -->
+<div class="mt-12">
+<div class="flex border-b border-slate-200 dark:border-slate-800">
+<button class="flex-1 py-3 text-sm font-bold border-b-2 border-primary text-primary">МЕНЮ</button>
+<button class="flex-1 py-3 text-sm font-bold text-slate-500 dark:text-slate-400">ОТЗЫВЫ</button>
+<button class="flex-1 py-3 text-sm font-bold text-slate-500 dark:text-slate-400">О НАС</button>
+</div>
+<!-- Menu List -->
+<div class="mt-6 space-y-4">
+<div class="flex justify-between items-center p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-lg bg-cover bg-center" data-alt="Signature chocolate cake slice" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCfUXhfa5ackiMWNohDksIUA2_YzVLkVuKJj_xpW7uAb3ia4mIg3J7Ptj_APCvVdbr0Yq-Fk5rpy-LAT1Yg59azpTr0zXvC4jmBelZDTaTECHfWiyEMHhamMT-t7o4wz4qwYSWlJr4hvBgmv_Y8OCTB2Voqsds9px2OEhavTTlyE4h9_Ib0ruKb3gG21oKdbnx6Un9P4dlNPz5S7_dvDZVXm9MudYi-f_Le5Sc2m-tINGJ1eYSVrgIsmqmBOeNsMc6ueW_Z2tzHxA");'></div>
+<div>
+<h4 class="font-medium text-sm">Шоколадный торт</h4>
+<p class="text-xs text-slate-500">Бельгийский шоколад</p>
+</div>
+</div>
+<span class="font-bold text-primary">2 500 ₸</span>
+</div>
+<div class="flex justify-between items-center p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-lg bg-cover bg-center" data-alt="Freshly brewed latte" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCf6zRjsQXeNPTAS5t9DbIOk26kR3NUe5ZdZk0k_-LETr_zupaBl9WlC6Cp3LqRGoRQrmbxzFhIGew_R8J03wimAdkxFI_U8z6svlBrpFYG110OdT092l5h62Z3oYvuASZXB-MlbbnB7YJ5GfG_43WJfCLjwt0lmTgpKbB9Ko5R3Dm1FrVEnR4wXSEUevbZr9MT9uODXWcDjTnxSK8FhhhKKv3TrXSimjwhFGyAg8g9hZpH7TRsnMJrxNlSxvuT8Rqjzx7n4ytYWw");'></div>
+<div>
+<h4 class="font-medium text-sm">Латте Арт</h4>
+<p class="text-xs text-slate-500">300 мл</p>
+</div>
+</div>
+<span class="font-bold text-primary">1 200 ₸</span>
+</div>
+<div class="flex justify-between items-center p-3 rounded-lg bg-slate-50 dark:bg-slate-800/50">
+<div class="flex items-center gap-3">
+<div class="size-12 rounded-lg bg-cover bg-center" data-alt="Fruit crepe with cream" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC3k7YXevChgItHnjCPaoBEJ4FGpbA5B68VqVT4o1H4rO35aGLQrRXrmhFZ_3DGY_q5l9jvRJNEYbsN4DFRhdGQ5H_hQm6WjvOOHrUUOwEavOg13ezTkbji-U7NcerYxY9wx_X6Hx_rL4dAUpA2Dkm2bPlInoXzLLwB9WTZpiHWJxjzG-DP02OzxPcGhcso6XORne04DSvuCWoyTh05TC85PdZNR9LjBbSj9gA8OKHdZrV31fqVgdpIqaqGv0Hi3gR6-0HTFQPhzw");'></div>
+<div>
+<h4 class="font-medium text-sm">Креп с ягодами</h4>
+<p class="text-xs text-slate-500">Завтрак весь день</p>
+</div>
+</div>
+<span class="font-bold text-primary">1 800 ₸</span>
+</div>
+</div>
+<!-- Reviews Preview (Brief) -->
+<div class="mt-14">
+<h3 class="font-bold text-lg mb-4">Последние отзывы</h3>
+<div class="space-y-4">
+<div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/30">
+<div class="flex items-center gap-3 mb-2">
+<img alt="User avatar" class="size-8 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqqI3QlF4y5d7cbLcwSs9jIsgcWzyf5Ln_9-y1FLQei038A4elxqHGQSQeU7Q2d7mL6LA5f43ZqVzygUgG_15TnGsGeyg5NbxyaIlmpqXTMKxRn56fDM6AV4CAbbLyNkHUjaEhWIsiakHmJTtYxif5YO0_wzoXafG9GBjouE-Z2D8j2NLSMotuNaHAVEeCZe-Oqn_Y1aCxWVH00OjUoyTcLPy6_CeCxcKSdlX6QcvaC0N7UG04eawYGMebIDjvBqgpThb67jWyEw"/>
+<div class="flex-1">
+<h5 class="text-sm font-bold">Алина М.</h5>
+<div class="flex text-yellow-400">
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+<span class="material-symbols-outlined text-[14px] fill-current">star</span>
+</div>
+</div>
+<span class="text-xs text-slate-500">Вчера</span>
+</div>
+<p class="text-sm text-slate-600 dark:text-slate-300">Самый вкусный шоколад в городе! Обязательно попробуйте фирменный фондан.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="route-state-overlay"></div>
+
+<div class="route-callout">
+    <span class="material-symbols-outlined" style="font-size:16px;font-variation-settings:'FILL' 1,'wght' 600,'GRAD' 0,'opsz' 24;">touch_app</span>
+    После нажатия открывается preview маршрута
+</div>
+
+<div class="route-sheet">
+    <div class="route-sheet__card">
+        <div class="route-sheet__handle"></div>
+        <div class="route-sheet__body">
+            <div class="route-kicker">Route Preview</div>
+            <div class="route-head">
+                <div>
+                    <h2>Маршрут до The Choco</h2>
+                    <p class="mt-2">Приложение сразу показывает время в пути, первый шаг и даёт выбор: остаться внутри приложения или открыть внешний навигатор.</p>
+                </div>
+                <div class="route-close"><span class="material-symbols-outlined" style="font-size:20px;">close</span></div>
+            </div>
+
+            <div class="route-modes">
+                <div class="route-mode active">
+                    <span class="material-symbols-outlined">directions_walk</span>
+                    <span class="route-mode__time">12 мин</span>
+                    <span class="route-mode__label">Пешком</span>
+                </div>
+                <div class="route-mode">
+                    <span class="material-symbols-outlined">directions_car</span>
+                    <span class="route-mode__time">6 мин</span>
+                    <span class="route-mode__label">На авто</span>
+                </div>
+                <div class="route-mode">
+                    <span class="material-symbols-outlined">local_taxi</span>
+                    <span class="route-mode__time">4 мин</span>
+                    <span class="route-mode__label">Такси</span>
+                </div>
+            </div>
+
+            <div class="route-summary">
+                <div class="route-summary__row">
+                    <strong style="font-size:14px;font-weight:700;color:#172033;">Старт сейчас</strong>
+                    <span>2.4 км до места</span>
+                </div>
+                <div class="route-step">
+                    <div class="route-step__icon"><span class="material-symbols-outlined" style="font-size:20px;">north_east</span></div>
+                    <div>
+                        <div class="route-step__title">Иди прямо по ул. Абая до перекрёстка с ул. Назарбаева</div>
+                        <div class="route-step__meta">Первый шаг маршрута показывается сразу, чтобы пользователь понял, что действие сработало.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="route-actions">
+                <div class="route-secondary">Остаться в приложении</div>
+                <div class="route-primary">Открыть в карте <span class="material-symbols-outlined" style="font-size:18px;color:inherit;">map</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="position:fixed;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(255,255,255,0.98) 0%,rgba(255,255,255,0.72) 55%,transparent 100%);padding-bottom:20px;display:flex;justify-content:center;align-items:flex-end;z-index:50;pointer-events:none;min-height:110px;">
+<nav style="display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.78);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border:1px solid rgba(148,163,184,.28);border-radius:9999px;padding:8px 16px;box-shadow:0 12px 30px rgba(15,23,42,.12),0 0 0 0.5px rgba(255,255,255,.9) inset;pointer-events:auto;">
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;background:rgba(36,99,235,.14);box-shadow:inset 0 0 0 1px rgba(36,99,235,.06);text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#2463eb;font-variation-settings:'FILL' 1,'wght' 400;">home</span><span style="font-size:9px;font-weight:600;color:#2463eb;font-family:Inter,sans-serif;">Главная</span></a>
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#64748b;">search</span><span style="font-size:9px;font-weight:500;color:#64748b;font-family:Inter,sans-serif;">Поиск</span></a>
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#64748b;">bookmark</span><span style="font-size:9px;font-weight:500;color:#64748b;font-family:Inter,sans-serif;">Сохранено</span></a>
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#64748b;">person</span><span style="font-size:9px;font-weight:500;color:#64748b;font-family:Inter,sans-serif;">Профиль</span></a>
+</nav>
+</div>
+</body></html>

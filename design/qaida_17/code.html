@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script>
+  tailwind.config = {
+    darkMode: 'class',
+    theme: {
+      extend: {
+        colors: {
+          primary: '#2463eb',
+          'background-light': '#f6f6f8',
+          'background-dark': '#0F0F0F',
+          'card-dark': '#1A1A1A'
+        },
+        fontFamily: { display: ['Inter', 'sans-serif'] }
+      }
+    }
+  }
+</script>
+<style>
+  body { min-height: max(884px, 100dvh); font-family: 'Inter', sans-serif; }
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+    font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+  }
+  .filter-option {
+    border-radius: 1rem;
+    border: 1.5px solid rgba(203, 213, 225, 0.92);
+    background: linear-gradient(180deg, #ffffff, #f8fafc);
+    box-shadow: 0 8px 18px rgba(15, 23, 42, 0.05);
+  }
+  .filter-option--selected {
+    border-color: rgba(36, 99, 235, 0.42);
+    background: linear-gradient(180deg, #fbfdff, #f1f6ff);
+    box-shadow: 0 10px 24px rgba(36, 99, 235, 0.08);
+  }
+</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased">
+<div class="relative flex h-screen w-full flex-col overflow-hidden max-w-md mx-auto border-x border-slate-200 dark:border-slate-800">
+<div class="flex items-center p-4 pb-2 justify-between">
+<button class="text-slate-900 dark:text-slate-100 flex size-12 shrink-0 items-center justify-start"><span class="material-symbols-outlined text-2xl">arrow_back</span></button>
+<h2 class="text-slate-900 dark:text-white text-lg font-bold leading-tight tracking-tight flex-1">Фильтры</h2>
+<button class="text-slate-500 dark:text-slate-400 flex size-12 shrink-0 items-center justify-end"><span class="material-symbols-outlined text-2xl">close</span></button>
+</div>
+<div class="flex flex-col gap-3 p-4 pt-2">
+<p class="text-[13px] font-semibold leading-normal text-slate-500 dark:text-slate-400">Шаг 4 из 4</p>
+<div class="rounded-full h-1.5 bg-slate-200 dark:bg-slate-800 overflow-hidden"><div class="h-full rounded-full bg-primary" style="width: 100%;"></div></div>
+</div>
+<div class="px-4 pt-6 pb-2">
+<h3 class="text-left text-[31px] font-semibold leading-[1.06] tracking-[-0.03em] text-slate-900 dark:text-white">Что ещё важно?</h3><p class="mt-2 text-[15px] leading-6 text-slate-500 dark:text-slate-400">Можно выбрать до трёх параметров</p>
+</div>
+<div class="flex-1 overflow-y-auto px-4 py-4">
+<div class="grid grid-cols-2 gap-4">
+<div class="filter-option filter-option--selected flex aspect-square flex-col justify-end gap-4 p-5 relative"><div class="absolute inset-0 rounded-xl bg-gradient-to-t from-primary/4 to-transparent"></div><div class="relative z-10"><div class="absolute -top-16 -right-1"><span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1,'wght' 500;">check_circle</span></div><span class="material-symbols-outlined mb-3 block text-[34px] text-primary">schedule</span><p class="text-[17px] font-semibold leading-6 text-slate-800">Открыто сейчас</p></div></div>
+<div class="filter-option filter-option--selected flex aspect-square flex-col justify-end gap-4 p-5 relative"><div class="absolute inset-0 rounded-xl bg-gradient-to-t from-primary/4 to-transparent"></div><div class="relative z-10"><div class="absolute -top-16 -right-1"><span class="material-symbols-outlined text-primary" style="font-variation-settings:'FILL' 1,'wght' 500;">check_circle</span></div><span class="material-symbols-outlined mb-3 block text-[34px] text-primary">directions_car</span><p class="text-[17px] font-semibold leading-6 text-slate-800">Парковка</p></div></div>
+<div class="filter-option flex aspect-square flex-col justify-end gap-4 p-5 relative"><div class="absolute inset-0 rounded-xl bg-gradient-to-t from-white/70 to-transparent"></div><div class="relative z-10"><span class="material-symbols-outlined mb-3 block text-[34px] text-primary">restaurant</span><p class="text-[17px] font-semibold leading-6 text-slate-800">Халал</p></div></div>
+<div class="filter-option flex aspect-square flex-col justify-end gap-4 p-5 relative" style="background:linear-gradient(180deg,#ffffff,#f4fcf7);"><div class="absolute inset-0 rounded-xl bg-gradient-to-t from-white/70 to-transparent"></div><div class="relative z-10"><span class="material-symbols-outlined mb-3 block text-[34px] text-primary">deck</span><p class="text-[17px] font-semibold leading-6 text-slate-800">Терраса</p></div></div>
+</div>
+<div class="mt-6 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+<p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-slate-400">Выбрано</p>
+<div class="mt-3 flex flex-wrap gap-2">
+<span class="inline-flex items-center gap-2 rounded-full bg-primary/8 px-3 py-2 text-[13px] font-semibold text-primary"><span class="material-symbols-outlined text-[17px]">groups</span>Друзья</span>
+<span class="inline-flex items-center gap-2 rounded-full bg-primary/8 px-3 py-2 text-[13px] font-semibold text-primary"><span class="material-symbols-outlined text-[17px]">local_cafe</span>Уютно</span>
+<span class="inline-flex items-center gap-2 rounded-full bg-primary/8 px-3 py-2 text-[13px] font-semibold text-primary"><span class="material-symbols-outlined text-[17px]">payments</span>4 000–8 000 ₸</span>
+</div>
+</div>
+</div>
+<div class="p-4 pb-8 bg-background-light dark:bg-background-dark border-t border-slate-200 dark:border-slate-800">
+<button class="flex h-[54px] w-full items-center justify-center rounded-[14px] bg-primary px-5 text-base font-semibold text-white shadow-[0_10px_20px_rgba(36,99,235,0.16)]"><span class="truncate">Показать 18 мест</span></button>
+</div>
+</div>
+</body></html>

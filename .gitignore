@@ -1,0 +1,13 @@
+/.venv
+/.vscode
+__pycache__/
+*.pyc
+*.pyo
+/.pytest_cache
+/.mypy_cache
+/.coverage 
+.sqlite3
+/media
+/staticfiles
+/local_settings.py
+.DS_Store

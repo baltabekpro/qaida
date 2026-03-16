@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#2463eb",
+                        "background-light": "#f6f6f8",
+                        "background-dark": "#0F0F0F",
+                        "card-dark": "#1A1A1A",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "0.5rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .filled-icon { font-variation-settings: 'FILL' 1; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    .yellow-star { color: #FFD700 !important; }
+    .blue-glow:active, .blue-glow:focus { box-shadow: 0 0 15px rgba(36, 99, 235, 0.6); }
+    .premium-btn { transition: all 0.3s ease; }
+    .premium-btn:hover { transform: translateY(-1px); }
+</style></head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 min-h-screen flex flex-col">
+<!-- Header -->
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md p-4 border-b border-slate-200 dark:border-slate-800">
+<h2 class="text-slate-900 dark:text-slate-100 text-lg font-bold leading-tight tracking-tight">Подборка для тебя</h2>
+</header>
+<!-- Recommendations -->
+<main class="flex-1 overflow-y-auto p-4 pb-24 space-y-5">
+<section class="rounded-[28px] border border-blue-200/80 bg-gradient-to-br from-blue-600 via-blue-500 to-cyan-400 text-white p-5 shadow-[0_22px_50px_rgba(37,99,235,0.28)]">
+<div class="flex items-start justify-between gap-3">
+<div>
+<p class="text-xs font-semibold uppercase tracking-[0.24em] text-white/70">Персонально</p>
+<h3 class="mt-2 text-2xl font-bold leading-tight">Куда пойти сегодня?</h3>
+<p class="mt-2 text-sm text-white/80">Собрали места по твоим сохранениям, времени и радиусу до 3 км.</p>
+</div>
+<div class="rounded-2xl bg-white/16 p-3 backdrop-blur-md">
+<span class="material-symbols-outlined text-[28px]">auto_awesome</span>
+</div>
+</div>
+<div class="mt-4 flex gap-2 flex-wrap">
+<span class="rounded-full bg-white/16 px-3 py-1 text-xs font-semibold">Уютно</span>
+<span class="rounded-full bg-white/16 px-3 py-1 text-xs font-semibold">До 4 000 ₸</span>
+<span class="rounded-full bg-white/16 px-3 py-1 text-xs font-semibold">Рядом</span>
+</div>
+</section>
+
+<section class="overflow-hidden rounded-[26px] bg-slate-100 dark:bg-card-dark border border-slate-200 dark:border-slate-800 shadow-xl">
+<div class="relative aspect-[1.25/1] bg-cover bg-center" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuCr8raYOcx7X8YoZb3obVLrxEweQc9BgjC4cpCM7jW6T_IJ-QRPYOubCP3VHuHtOlIIeECguyddGSd_Fb-8rWe3sc9FXDoLqO2W9fFozmJ7o4GeZKsSt2_MKr5ny_v2ZkMYOXJKV4QEp_hsf_VFKzyEBZ7k129nvFCZc84XkJAjaSqHuJQKA_p53GjvYIV7BO3GcEuW16AtyN3b6I74Iz1R2S8SUA9nGT-4T6cywTuGTyPa3oamjaVUpkGFWHDl-eidZC07BdHs8Q');">
+<div class="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-950/10 to-transparent"></div>
+<div class="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1 text-[11px] font-bold text-primary shadow-lg">Совпадение 96%</div>
+<button class="absolute right-4 top-4 flex size-10 items-center justify-center rounded-full bg-slate-950/30 text-white backdrop-blur-md">
+<span class="material-symbols-outlined filled-icon">favorite</span>
+</button>
+<div class="absolute inset-x-4 bottom-4 text-white">
+<h3 class="text-[30px] font-bold leading-none">The Choco</h3>
+<p class="mt-2 flex items-center gap-2 text-sm text-white/85">
+<span class="material-symbols-outlined text-base filled-icon yellow-star">star</span>
+                    4.9 · 1.2 км · до 23:00
+                </p>
+<div class="mt-3 flex gap-2 flex-wrap text-[11px] font-semibold text-white/92">
+<span class="rounded-full bg-white/14 px-3 py-1 backdrop-blur-md">Тихая атмосфера</span>
+<span class="rounded-full bg-white/14 px-3 py-1 backdrop-blur-md">Как в сохранённых</span>
+<span class="rounded-full bg-white/14 px-3 py-1 backdrop-blur-md">Быстрая посадка</span>
+</div>
+            </div>
+        </div>
+<div class="p-4 space-y-4">
+<div class="grid grid-cols-3 gap-2">
+<div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 text-center">
+<p class="text-[11px] text-slate-500 dark:text-slate-400">Бюджет</p>
+<p class="mt-1 text-sm font-bold text-slate-900 dark:text-white">3 500 ₸</p>
+</div>
+<div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 text-center">
+<p class="text-[11px] text-slate-500 dark:text-slate-400">Время</p>
+<p class="mt-1 text-sm font-bold text-slate-900 dark:text-white">12 мин</p>
+</div>
+<div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-3 text-center">
+<p class="text-[11px] text-slate-500 dark:text-slate-400">Формат</p>
+<p class="mt-1 text-sm font-bold text-slate-900 dark:text-white">Кофейня</p>
+</div>
+</div>
+<div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-4">
+<p class="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">Почему рекомендуем</p>
+<div class="mt-3 space-y-3 text-sm text-slate-600 dark:text-slate-300">
+<div class="flex items-start gap-3"><span class="material-symbols-outlined text-primary">match_score</span><span>Похож на места, которые ты уже сохранял в [Избранное].</span></div>
+<div class="flex items-start gap-3"><span class="material-symbols-outlined text-primary">schedule</span><span>Открыт сейчас и подходит под быстрый вечерний визит.</span></div>
+<div class="flex items-start gap-3"><span class="material-symbols-outlined text-primary">restaurant</span><span>Есть халал-опции и десерты, которые ты часто смотришь.</span></div>
+            </div>
+        </div>
+<div class="flex flex-col gap-2">
+<button class="w-full h-12 bg-primary text-white rounded-xl text-sm font-bold shadow-lg shadow-primary/30 hover:bg-primary/90 premium-btn blue-glow flex items-center justify-center gap-2">Идём <span class="material-symbols-outlined text-base">map</span></button>
+<button class="w-full h-12 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-200 rounded-xl text-sm font-bold hover:bg-slate-50 dark:hover:bg-slate-800 premium-btn blue-glow">Посмотреть детали</button>
+        </div>
+    </div>
+</section>
+
+<section class="space-y-3">
+<div class="flex items-center justify-between">
+<h4 class="text-base font-bold text-slate-900 dark:text-white">Ещё 2 варианта</h4>
+<button class="text-sm font-semibold text-primary">Обновить</button>
+</div>
+<div class="space-y-3">
+<article class="flex gap-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-card-dark p-3 shadow-sm">
+<div class="h-24 w-24 shrink-0 rounded-2xl bg-cover bg-center" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuCeyDKtEFcQHcvu5-vp-XJHxSuUf0AmjoTwWJjH_uWCkrmPIqb6bbrxyjJcjl1HMxkvd6ZjkbwZ8j8XNud7uteUhDNE8RxbYGMQhDs7o9HyBfbG5ejBV_1WgqtXkLziA_xFiRC0E_h3zPVMXfqkY4w_WgsEmsaekmVMt1b8ONbEWh7TG2Augy4OqaSdOKQPpQsRxrPZGNsbr0Zr6DdqqnTJuFFmk6Qxu-8vt4hBgf8uRTMtxxio0_93JlwiI9aSUDcztxgVlrD_Pg');"></div>
+<div class="min-w-0 flex-1">
+<div class="flex items-start justify-between gap-2">
+<div>
+<h5 class="text-base font-bold text-slate-900 dark:text-white">Steak &amp; Wine</h5>
+<p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Для длинного ужина и спокойной встречи</p>
+</div>
+<span class="rounded-full bg-violet-100 text-violet-700 dark:bg-violet-500/14 dark:text-violet-200 px-2.5 py-1 text-[11px] font-bold">89%</span>
+</div>
+<div class="mt-3 flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm filled-icon yellow-star">star</span>4.7</span>
+<span>2.5 км</span>
+<span>12 000 ₸</span>
+</div>
+            </div>
+        </article>
+<article class="flex gap-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-card-dark p-3 shadow-sm">
+<div class="h-24 w-24 shrink-0 rounded-2xl bg-cover bg-center" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuCwWBBgmzwpTWhgBFiBda3ocm4t5jC0E30XAMxgqB5qsMXw5tBTfIVDODhnnNCYYEo81RsLMopYfxRd_SuCG571-7ZEwfawfw63Uscrht0Tm6gDAf_hPvyp1N-lPmntFsvyE_-b6dBXFAUBPTL2Vm5g7rUas_vfblO8EhwXtLn-kIJWGcdbmlL_tWtAvNC0UoALp6y6KnWw8XEKJsWR4HnzE5zhh5wsl0A_SqPfV1htcWcuUHZG6ZAetqnq5cMf0kswmKib2Jrl8Q');"></div>
+<div class="min-w-0 flex-1">
+<div class="flex items-start justify-between gap-2">
+<div>
+<h5 class="text-base font-bold text-slate-900 dark:text-white">Nomad Cuisine</h5>
+<p class="mt-1 text-xs text-slate-500 dark:text-slate-400">Если хочешь национальную кухню и тихий зал</p>
+</div>
+<span class="rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-500/14 dark:text-emerald-200 px-2.5 py-1 text-[11px] font-bold">84%</span>
+</div>
+<div class="mt-3 flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400">
+<span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm filled-icon yellow-star">star</span>4.8</span>
+<span>3.1 км</span>
+<span>6 000 ₸</span>
+</div>
+            </div>
+        </article>
+    </div>
+</section>
+</main>
+<!-- Bottom Navigation -->
+<div style="position:fixed;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(255,255,255,0.98) 0%,rgba(255,255,255,0.72) 55%,transparent 100%);padding-bottom:20px;display:flex;justify-content:center;align-items:flex-end;z-index:50;pointer-events:none;min-height:110px;">
+<nav style="display:flex;align-items:center;gap:4px;background:rgba(255,255,255,0.78);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border:1px solid rgba(148,163,184,.28);border-radius:9999px;padding:8px 16px;box-shadow:0 12px 30px rgba(15,23,42,.12),0 0 0 0.5px rgba(255,255,255,.9) inset;pointer-events:auto;">
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#64748b;">home</span><span style="font-size:9px;font-weight:500;color:#64748b;font-family:Inter,sans-serif;">Главная</span></a>
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;background:rgba(36,99,235,.14);box-shadow:inset 0 0 0 1px rgba(36,99,235,.06);text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#2463eb;font-variation-settings:'FILL' 1,'wght' 400;">search</span><span style="font-size:9px;font-weight:600;color:#2463eb;font-family:Inter,sans-serif;">Поиск</span></a>
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#64748b;">bookmark</span><span style="font-size:9px;font-weight:500;color:#64748b;font-family:Inter,sans-serif;">Сохранено</span></a>
+<a href="#" style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 14px;border-radius:9999px;text-decoration:none;"><span class="material-symbols-outlined" style="font-size:20px;color:#64748b;">person</span><span style="font-size:9px;font-weight:500;color:#64748b;font-family:Inter,sans-serif;">Профиль</span></a>
+</nav>
+</div>
+</body></html>
