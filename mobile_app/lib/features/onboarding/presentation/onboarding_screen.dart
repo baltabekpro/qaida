@@ -20,47 +20,49 @@ class _OnboardingScreenState extends State<OnboardingScreen>
 
   static const _topRowCards = [
     _OnboardingCardData(
-      title: 'Choco Café',
-      subtitle: 'Кафе · 4.8 ★',
+      title: 'Choco Cafe',
+      subtitle: 'Cafe · 4.8 ★',
       icon: Icons.local_cafe_rounded,
       iconColor: Color(0xFF60A5FA),
       iconBackground: Color(0x403882F6),
-                          child: Wrap(
-                            alignment: WrapAlignment.center,
-                            spacing: 8,
-                            runSpacing: 8,
-                            children: _featurePills.map((pill) {
-                              return _FeaturePill(
-                                label: pill.$1,
-                                icon: pill.$2,
-                                iconColor: pill.$3,
-                              );
-                            }).toList(),
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 420),
-                          child: _StartButton(onPressed: widget.onStart),
-                        ),
-                        const SizedBox(height: 16),
-                        ConstrainedBox(
-                          constraints: const BoxConstraints(maxWidth: 420),
-                          child: Text(
-                            '50+ мест · Алматы',
-                            textAlign: TextAlign.center,
-                            style: Theme.of(context).textTheme.bodySmall
-                                ?.copyWith(
-                                  color: const Color(0xFF94A3B8),
-                                  letterSpacing: 0.2,
-                                ),
-      endColor: Color(0xFF201010),
+      startColor: Color(0xFF1A233B),
+      endColor: Color(0xFF111827),
     ),
+    _OnboardingCardData(
+      title: 'Green Park',
+      subtitle: 'Nature · 4.7 ★',
       icon: Icons.park_rounded,
       iconColor: Color(0xFFFBBF24),
       iconBackground: Color(0x2EFBBF24),
       startColor: Color(0xFF2E2A1A),
       endColor: Color(0xFF201C0F),
+    ),
+    _OnboardingCardData(
+      title: 'Sky Lounge',
+      subtitle: 'Rooftop · 4.9 ★',
+      icon: Icons.nightlife_rounded,
+      iconColor: Color(0xFFA78BFA),
+      iconBackground: Color(0x33A78BFA),
+      startColor: Color(0xFF241A3A),
+      endColor: Color(0xFF18112A),
+    ),
+    _OnboardingCardData(
+      title: 'Art Hall',
+      subtitle: 'Culture · 4.6 ★',
+      icon: Icons.palette_rounded,
+      iconColor: Color(0xFFFB7185),
+      iconBackground: Color(0x33FB7185),
+      startColor: Color(0xFF341A25),
+      endColor: Color(0xFF221018),
+    ),
+    _OnboardingCardData(
+      title: 'Coffee Roaster',
+      subtitle: 'Brunch · 4.8 ★',
+      icon: Icons.free_breakfast_rounded,
+      iconColor: Color(0xFF2DD4BF),
+      iconBackground: Color(0x2E2DD4BF),
+      startColor: Color(0xFF1A2A2E),
+      endColor: Color(0xFF0F1820),
     ),
   ];
 
@@ -391,10 +393,10 @@ class _AnimatedStrip extends StatelessWidget {
                       ),
                     ),
                   ),
-                ),
+                  );
               },
-            );
-          },
+            ),
+            ),
         );
       },
     );
